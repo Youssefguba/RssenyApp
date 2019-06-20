@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "895831835395",
+    "firebase_url": "https://rsseny-student.firebaseio.com",
+    "project_id": "rsseny-student",
+    "storage_bucket": "rsseny-student.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895831835395:android:6995a30ba3e2b05f",
+        "android_client_info": {
+          "package_name": "com.rsseny.student"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895831835395-3diugl766tttvv6872avu9b5l75eepp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rsseny.student",
+            "certificate_hash": "768a4db9859f20269ce5666e39faeb9ae0b30410"
+          }
+        },
+        {
+          "client_id": "895831835395-47q716q6hijebn5l1c75vmrhvdnvfi2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUZn0uXPH4NEATdkpaituZO8PHcKBnPOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895831835395-47q716q6hijebn5l1c75vmrhvdnvfi2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

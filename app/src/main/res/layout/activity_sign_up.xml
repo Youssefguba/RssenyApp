@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00A6FF"
+    tools:context=".FirstPage">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/logo_first_page"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            />
+
+        <EditText
+            android:id="@+id/userName_editText"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="إسم المستخدم"
+            android:gravity="center"
+            android:inputType="text"
+            android:fontFamily="@font/arahamahcity"
+            android:layout_gravity="center_horizontal"
+            android:textSize="22dp"
+            android:textColor="#fff"
+            />
+
+        <EditText
+            android:id="@+id/email_editText"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="البريد الالكتروني"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:fontFamily="@font/arahamahcity"
+            android:layout_gravity="center_horizontal"
+            android:textSize="22dp"
+            android:textColor="#fff"
+            />
+
+        <EditText
+            android:id="@+id/phoneNumber_editText"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="رقم الهاتف"
+            android:gravity="center"
+            android:inputType="text"
+            android:fontFamily="@font/arahamahcity"
+            android:layout_gravity="center_horizontal"
+            android:textSize="22dp"
+            android:textColor="#fff"
+            />
+
+        <EditText
+            android:id="@+id/password_editText"
+            android:layout_marginTop="20dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="كلمة المرور"
+            android:inputType="textPassword"
+            android:gravity="center"
+            android:fontFamily="@font/arahamahcity"
+            android:layout_gravity="center_horizontal"
+            android:textSize="22dp"
+            android:textColor="#fff"
+            />
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/signup_submit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            app:nb_text="إنشاء حساب"
+            app:nb_textSize="15dp"
+            app:nb_textStyle="bold"
+            app:nb_borderWidth="2dp"
+            app:nb_backgroundColor="#fff"
+            app:nb_focusColor="#2A5F81"
+            app:nb_textColor="#2481B4"
+            app:nb_radius="5dp"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
