@@ -13,11 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-
-        <activity android:name=".SignUp"
+        <activity android:name=".HomeActivity"></activity>
+        <activity
+            android:name=".SignUp"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -32,12 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".FirstPage"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-
         <activity android:name=".MainActivity" />
     </application>
 

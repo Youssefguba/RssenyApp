@@ -23,13 +23,13 @@
             />
 
         <EditText
-            android:id="@+id/userName_editText"
+            android:id="@+id/email_editText"
             android:layout_marginTop="20dp"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:hint="إسم المستخدم"
+            android:hint="البريد الإلكتروني"
             android:gravity="center"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:fontFamily="@font/arahamahcity"
             android:layout_gravity="center_horizontal"
             android:textSize="22dp"

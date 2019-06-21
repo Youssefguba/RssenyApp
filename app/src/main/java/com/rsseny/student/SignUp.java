@@ -1,28 +1,23 @@
 package com.rsseny.student;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.ornach.nobobutton.NoboButton;
 import com.rsseny.student.Model.User;
 
@@ -37,7 +32,9 @@ public class SignUp extends AppCompatActivity {
     DatabaseReference userRef;
     FirebaseDatabase database;
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    String uid = currentUser != null ? currentUser.getUid() : null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,66 +56,67 @@ public class SignUp extends AppCompatActivity {
         submitSignUpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validForm();
+                signUp();
             }
         });
 
     }
 
-    private void validForm() {
+    private void signUp() {
+
         final String email_Field = emailField.getText().toString().trim();
         final String password_Field = passwordField.getText().toString().trim();
         final String phone_Field = phoneNumberField.getText().toString().trim();
         final String name_Field = nameField.getText().toString().trim();
 
+        if (name_Field.isEmpty()) {
+            nameField.setError("معقولة انت نسيت اسمك ولا ايه ☺");
+            nameField.requestFocus();
+            return;
+        }
+
         if (email_Field.isEmpty()) {
-            emailField.setError("انت شكلك كده نسيت تكتب الايميل");
+            emailField.setError("انت شكلك كده نسيت تكتب الايميل ☺");
             emailField.requestFocus();
             return;
         }
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email_Field).matches()) {
-            emailField.setError("اكتب ايميل صح بعد اذنك");
+            emailField.setError("اكتب ايميل صح من فضلك لو مفهاش ازعاج يعني ☺");
             emailField.requestFocus();
             return;
         }
 
 
-        if (name_Field.isEmpty()) {
-            passwordField.setError("معقولة انت نسيت اسمك ولا ايه :)");
-            passwordField.requestFocus();
-            return;
-        }
+
 
         if (phone_Field.isEmpty()) {
-            passwordField.setError("انت مش فاكر رقم تلفونك ولا ايه :)");
-            passwordField.requestFocus();
+            phoneNumberField.setError("انت مش فاكر رقم تلفونك ولا ايه ☺");
+            phoneNumberField.requestFocus();
             return;
         }
 
         if (password_Field.isEmpty()) {
-            passwordField.setError("انت نسيت الباسوورد ولا ايه :)");
+            passwordField.setError("معقولة يعني فيه ايميل من غير باسوورد ☺");
             passwordField.requestFocus();
             return;
         }
 
 
         if (password_Field.length() < 8) {
-            passwordField.setError("اقل حاجة 8 حروف او ارقام يا كبير");
+            passwordField.setError("اقل حاجة 8 حروف او ارقام مش كل شوية هفهمك انا ☺");
             passwordField.requestFocus();
             return;
         }
 
-        registerUser(email_Field, name_Field, password_Field, phone_Field);
-    }
-
-    private void registerUser (final String email, final String name, final String password, final String phone) {
 
         progressDialog = new ProgressDialog(SignUp.this);
         progressDialog.show();
-        progressDialog.setMessage("استنى شوية لحد ما نعملك اكونت :)");
+        progressDialog.setMessage("استنى شوية لحد ما نعملك اكونت ☺");
 
+       final String email = emailField.getText().toString().trim();
+       final String password = passwordField.getText().toString().trim();
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -126,23 +124,13 @@ public class SignUp extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 if (task.isSuccessful()) {
-                    userRef.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            User new_user = new User(name, email, phone, password);
-
-                            userRef.child(user.getUid()).setValue(new_user);
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {}
-
-                    });
-
+                    writeNewUser(uid);
                     finish();
+                    Toast.makeText(getApplicationContext(), "مبروك عليك الإيميل يا كبير ☺", Toast.LENGTH_SHORT).show();
+
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(getApplicationContext(), "انت مسجل قبل كده يا معلم :)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "انت مسجل قبل كده يا معلم ☺", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -152,5 +140,20 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+
+    // [START basic_write]
+        private void writeNewUser(String userId) {
+
+            String email_Field = emailField.getText().toString().trim();
+            String password_Field = passwordField.getText().toString().trim();
+            String phone_Field = phoneNumberField.getText().toString().trim();
+            String name_Field = nameField.getText().toString().trim();
+
+        User newUser = new User(userId ,name_Field, email_Field, phone_Field, password_Field);
+
+        userRef.child(uid).setValue(newUser);
+    }
+    // [END basic_write]
+
 
 }
