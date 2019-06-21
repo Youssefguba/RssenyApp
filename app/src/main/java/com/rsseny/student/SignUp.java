@@ -33,7 +33,7 @@ public class SignUp extends AppCompatActivity {
     FirebaseDatabase database;
 
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-    String uid = currentUser != null ? currentUser.getUid() : null;
+    String uid = currentUser.getUid();
 
 
     @Override
@@ -124,7 +124,7 @@ public class SignUp extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 if (task.isSuccessful()) {
-                    writeNewUser(uid);
+                    writeNewUser(task.getResult().getUser());
                     finish();
                     Toast.makeText(getApplicationContext(), "مبروك عليك الإيميل يا كبير ☺", Toast.LENGTH_SHORT).show();
 
@@ -142,16 +142,16 @@ public class SignUp extends AppCompatActivity {
     }
 
     // [START basic_write]
-        private void writeNewUser(String userId) {
+        private void writeNewUser(FirebaseUser user) {
 
             String email_Field = emailField.getText().toString().trim();
             String password_Field = passwordField.getText().toString().trim();
             String phone_Field = phoneNumberField.getText().toString().trim();
             String name_Field = nameField.getText().toString().trim();
 
-        User newUser = new User(userId ,name_Field, email_Field, phone_Field, password_Field);
+        User newUser = new User(name_Field, email_Field, phone_Field, password_Field);
 
-        userRef.child(uid).setValue(newUser);
+        userRef.child(user.getUid()).setValue(newUser);
     }
     // [END basic_write]
 
