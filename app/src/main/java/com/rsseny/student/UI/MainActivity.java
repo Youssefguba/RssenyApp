@@ -1,8 +1,10 @@
-package com.rsseny.student;
+package com.rsseny.student.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.rsseny.student.R;
 
 public class MainActivity extends AppCompatActivity {
 

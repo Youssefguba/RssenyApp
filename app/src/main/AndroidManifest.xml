@@ -15,31 +15,42 @@
         tools:ignore="GoogleAppIndexingWarning">
 
 
-        <activity android:name=".HomeActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity android:name=".UI.FacultiesActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
 
         <activity
-            android:name=".SignUp"
+            android:name=".UI.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+
+        <activity
+            android:name=".UI.SignUp"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
-            android:name=".splash_screen"
+            android:name=".UI.splash_screen"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
-            android:name=".FirstPage"
+            android:name=".UI.FirstPage"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".MainActivity" />
+
+
+        <activity android:name=".UI.MainActivity" />
+
+
     </application>
 
 </manifest>

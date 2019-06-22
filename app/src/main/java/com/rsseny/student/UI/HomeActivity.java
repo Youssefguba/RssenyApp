@@ -1,4 +1,4 @@
-package com.rsseny.student;
+package com.rsseny.student.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,14 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ornach.nobobutton.NoboButton;
+import com.rsseny.student.R;
 
+
+/*
+* This activity is like a "Link or Bridge" between
+ * SignIn Activity(FirstPage) and Faculties or Consultation Activities..
+ *
+* */
 public class HomeActivity extends AppCompatActivity {
 
     NoboButton knowMorebtn, consultationbtn;
@@ -24,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         knowMorebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent knowMoreIntent = new Intent();
+                Intent knowMoreIntent = new Intent(HomeActivity.this, FacultiesActivity.class);
                 startActivity(knowMoreIntent);
             }
         });

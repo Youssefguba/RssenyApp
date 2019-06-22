@@ -1,9 +1,11 @@
-package com.rsseny.student;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.rsseny.student.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.rsseny.student.R;
 
 /**************************************************************
 * Created by Yu-Guba (Techack)                                *

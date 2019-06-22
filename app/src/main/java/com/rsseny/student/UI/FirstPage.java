@@ -1,4 +1,4 @@
-package com.rsseny.student;
+package com.rsseny.student.UI;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -31,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ornach.nobobutton.NoboButton;
 import com.rsseny.student.Model.User;
+import com.rsseny.student.R;
 
 import org.json.JSONObject;
 

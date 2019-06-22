@@ -1,4 +1,4 @@
-package com.rsseny.student;
+package com.rsseny.student.UI;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ornach.nobobutton.NoboButton;
 import com.rsseny.student.Model.User;
+import com.rsseny.student.R;
 
 public class SignUp extends AppCompatActivity {
 
