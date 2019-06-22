@@ -40,12 +40,12 @@ public class FacultiesActivity extends AppCompatActivity {
 
         recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
+
         loadChoosingMenu();
 
     }
 
     //This called when Activity started to fetch data from Firebase database
-
     public void loadChoosingMenu(){
         FirebaseRecyclerOptions<ChoosingItem> options = new FirebaseRecyclerOptions.Builder<ChoosingItem>()
                 .setQuery(choosingRef, ChoosingItem.class)
@@ -80,8 +80,8 @@ public class FacultiesActivity extends AppCompatActivity {
                         .inflate(R.layout.choosing_item_ui, parent, false);
                 return new ChoosingViewHolder(itemView);
             }
-
         };
+
         adapter.startListening();
         recycler_menu.setAdapter(adapter);
 
