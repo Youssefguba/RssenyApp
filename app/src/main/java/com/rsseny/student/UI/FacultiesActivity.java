@@ -21,6 +21,11 @@ import com.rsseny.student.R;
 import com.rsseny.student.ViewHolder.ChoosingViewHolder;
 import com.squareup.picasso.Picasso;
 
+
+/*
+* This Activity for showing the list of faculties that user can choose.
+*
+* */
 public class FacultiesActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
@@ -65,7 +70,7 @@ public class FacultiesActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         //Start Food Details Activity
-                        Intent foodIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent foodIntent = new Intent(getApplicationContext(), VideosActivity.class);
                         //ChoosingItemId is a key, so we need to get the Key of item ..
                         foodIntent.putExtra("ChoosingItemId", adapter.getRef(position).getKey());
                         startActivity(foodIntent);

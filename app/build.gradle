@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        "AIzaSyAnBBtXNbqQ9TCK3rPQd69-S7eXvpR333M"
     }
     buildTypes {
         release {
@@ -26,7 +27,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
 
 
     //Buttons Libraries
@@ -50,13 +50,17 @@ dependencies {
     //noinspection GradleCompatible
     implementation "com.android.support:support-emoji:28.0.0"
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
 
 
     //noinspection GradleCompatible
     implementation "com.android.support:support-emoji-appcompat:26.0.0"
     //noinspection GradleCompatible
     implementation "com.android.support:support-emoji-bundled:26.0.0"
+    implementation 'com.github.clans:fab:1.6.4'
 
+
+    // Google Libaries
 
 }
 apply plugin: 'com.google.gms.google-services'

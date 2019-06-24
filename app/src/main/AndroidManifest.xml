@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.rsseny.student">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -14,20 +18,20 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <activity android:name=".UI.VideosActivity">
+        </activity>
 
-        <activity android:name=".UI.FacultiesActivity"
+
+
+        <activity
+            android:name=".UI.FacultiesActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-
         <activity
             android:name=".UI.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-
         <activity
             android:name=".UI.SignUp"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -38,19 +42,14 @@
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".UI.FirstPage"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
-
         <activity android:name=".UI.MainActivity" />
-
-
     </application>
 
 </manifest>
