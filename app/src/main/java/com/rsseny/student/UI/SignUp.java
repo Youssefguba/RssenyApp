@@ -33,8 +33,6 @@ public class SignUp extends AppCompatActivity {
     DatabaseReference userRef;
     FirebaseDatabase database;
 
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-    String uid = currentUser.getUid();
 
 
     @Override

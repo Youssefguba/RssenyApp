@@ -1,11 +1,13 @@
 package com.rsseny.student.Model;
 
 public class Videos {
-  private  String nameOfVideo, videoLink;
+  private  String nameOfVideo, videoLink, MenuId;
 
-    public Videos(String nameOfVideo, String videoLink) {
+
+    public Videos(String nameOfVideo, String videoLink, String menuId) {
         this.nameOfVideo = nameOfVideo;
         this.videoLink = videoLink;
+        MenuId = menuId;
     }
 
     public Videos() {

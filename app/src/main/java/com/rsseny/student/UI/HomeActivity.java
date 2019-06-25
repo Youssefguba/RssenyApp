@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         consultationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent consultationIntent = new Intent();
+                Intent consultationIntent = new Intent(HomeActivity.this, askingActivity.class);
                 startActivity(consultationIntent);
             }
         });

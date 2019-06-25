@@ -34,6 +34,7 @@ public class FacultiesActivity extends AppCompatActivity {
 
     RecyclerView recycler_menu;
 
+    //Todo make a loading dialog to show the application fetching data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class FacultiesActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
                         //Start Food Details Activity
-                        Intent foodIntent = new Intent(getApplicationContext(), VideosActivity.class);
+                        Intent foodIntent = new Intent(getApplicationContext(), MainActivity.class);
                         //ChoosingItemId is a key, so we need to get the Key of item ..
                         foodIntent.putExtra("ChoosingItemId", adapter.getRef(position).getKey());
                         startActivity(foodIntent);
