@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:layoutDirection="rtl"
-    android:weightSum="5"
+    android:layout_marginTop="7dp"
+    android:layout_marginBottom="7dp"
     android:background="@color/colorPrimary"
-    android:layout_marginBottom="7dp">
+    android:layoutDirection="rtl"
+    android:orientation="horizontal"
+    android:weightSum="5">
 
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1">
 
-    <ImageView
-        android:id="@+id/mentorPhoto"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginStart="20dp" />
+        <ImageView
+            android:id="@+id/mentorPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp" />
 
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -34,63 +34,77 @@
             android:id="@+id/nameOfMentor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="7dp"
             android:fontFamily="@font/hacenvanilla"
+            android:gravity="right"
             android:text="يوسف"
             android:textColor="#fff"
-            android:textStyle="bold"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="5dp"
             android:textSize="17dp"
-            />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/descriptionOfMentor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/israrsyria"
-            android:text="Youssef"
-            android:layout_marginTop="7dp"
             android:layout_marginStart="5dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/israrsyria"
+            android:gravity="right"
             android:layoutDirection="rtl"
-            android:gravity="end"
+            android:text="Youssef"
             android:textColor="#fff"
-            android:textStyle="bold"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="4"
-            android:layoutDirection="rtl">
+            android:layoutDirection="rtl"
+            android:weightSum="4">
 
-        <TextView
-            android:id="@+id/priceOfMentor"
-            android:layout_width="0dp"
-            android:layout_weight="1.5"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/israrsyria"
-            android:text="Youssef"
-            android:gravity="end"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="5dp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/priceOfMentor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="7dp"
+                android:layout_weight="0.4"
+                android:fontFamily="@font/israrsyria"
+                android:gravity="right"
+                android:text="1000"
+                android:textColor="#fff"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/currencyOfPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="7dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/israrsyria"
+                android:gravity="right"
+                android:text="ج.م/ساعة"
+                android:textColor="#fff"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/phoneNumberOfMentor"
                 android:layout_width="0dp"
-                android:layout_weight="2.5"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="2"
                 android:fontFamily="@font/hacenvanilla"
                 android:text="012345678910"
-                android:textDirection="ltr"
-                android:layout_marginTop="7dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
                 android:textColor="#fff"
-                android:textStyle="bold"
-                android:textSize="15dp" />
+                android:textDirection="ltr"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

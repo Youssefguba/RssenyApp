@@ -10,9 +10,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/logo"
+        android:icon="@mipmap/backgroundwhitelogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo"
+        android:roundIcon="@mipmap/backgroundwhitelogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -24,7 +24,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".UI.askingActivity"
-            android:label="إسأل واستشير">
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rsseny.student.UI.FacultiesActivity" />

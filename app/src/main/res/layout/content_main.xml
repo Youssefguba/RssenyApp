@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".UI.MainActivity"
-    android:background="@color/colorPrimary"
+    android:background="#7CF9F9F9"
     tools:showIn="@layout/app_bar_main">
 
     <androidx.recyclerview.widget.RecyclerView

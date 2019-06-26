@@ -30,12 +30,16 @@ import com.rsseny.student.Model.Videos;
 import com.rsseny.student.R;
 import com.rsseny.student.ViewHolder.VideosViewHolder;
 
+import static androidx.core.view.GravityCompat.RELATIVE_LAYOUT_DIRECTION;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     //Todo Don't forget the problem of navigation drawer it's not clickable
     //Todo Don't forget the title and logo of faculty in the @Toolbar
+
+    public static final int END = RELATIVE_LAYOUT_DIRECTION | GravityCompat.END;
 
 
     FirebaseDatabase database;
@@ -46,6 +50,9 @@ public class MainActivity extends AppCompatActivity
     RecyclerView recyclerView;
     Toolbar toolbar;
 
+    private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
     private FloatingActionButton askBtn;
     private FloatingActionButton knowMoreBtn;
 
@@ -58,17 +65,34 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Navigation and Toolbar func and Init..
         toolbar = findViewById(R.id.toolbar);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
         toolbar.setTitle("الكليات");
         setSupportActionBar(toolbar);
 
+        toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+
+
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        //Firebase init
         database = FirebaseDatabase.getInstance();
         vidRef = database.getReference("Videos");
         facultyRef = database.getReference("Faculties");
 
+        //Recycler Init
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
 
+        //Buttons Init
         knowMoreBtn = findViewById(R.id.know_more_button);
         askBtn = findViewById(R.id.ask_nav);
 
@@ -76,7 +100,7 @@ public class MainActivity extends AppCompatActivity
         knowMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "ما هي دي نفس الصفحة اللى انت فيها يا ذكي ☺", Toast.LENGTH_LONG).show();
+                    recreate();
             }
         });
 
@@ -88,17 +112,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        setSupportActionBar(toolbar);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-
-
+            // Get data from firebase according to choosing of item..
         if (getIntent() != null ) {
             videosId = getIntent().getStringExtra("ChoosingItemId");
             if (!videosId.isEmpty()  && videosId != null) {
@@ -146,15 +160,15 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.END)) {
             drawer.closeDrawer(GravityCompat.END);
         } else {
-            drawer.openDrawer(GravityCompat.END);
+            super.onBackPressed();
         }
-
     }
 
 
@@ -165,10 +179,12 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            startActivity(new Intent (this, HomeActivity.class));
         } else if (id == R.id.askNavigation) {
+            startActivity(new Intent (this, askingActivity.class));
 
         } else if (id == R.id.knowMoreNav) {
+            recreate();
 
         } else if (id == R.id.logOutNav) {
 

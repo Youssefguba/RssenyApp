@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:id="@+id/choosing_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="15dp"
-    android:id="@+id/choosing_item">
+    android:orientation="horizontal">
 
 
     <LinearLayout
@@ -14,34 +13,34 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/choosing_faculty_button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:padding="10dp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:fontFamily="@font/arahamahcity"
-        android:background="#fff"
-        android:text="إدارة أعمال"
-        android:textSize="18dp"
-        android:textColor="#00A6FF"
-        android:textStyle="bold"
-        android:layout_marginBottom="10dp"
+        <TextView
+            android:id="@+id/choosing_faculty_button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/curve_shape"
+            android:fontFamily="@font/arahamahcity"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="إدارة أعمال"
+            android:textColor="#00A6FF"
+            android:textSize="18dp"
+            android:textStyle="bold"
 
-        />
+            />
 
-    <ImageView
-        android:id="@+id/choosing_faculty_image"
-        android:layout_width="42dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/da7e7"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
+        <ImageView
+            android:id="@+id/choosing_faculty_image"
+            android:layout_width="42dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/da7e7"
 
-        />
+            />
 
     </LinearLayout>
 

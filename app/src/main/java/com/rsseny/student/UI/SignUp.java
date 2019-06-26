@@ -22,18 +22,17 @@ import com.ornach.nobobutton.NoboButton;
 import com.rsseny.student.Model.User;
 import com.rsseny.student.R;
 
+import es.dmoral.toasty.Toasty;
+
 public class SignUp extends AppCompatActivity {
 
     EditText nameField, emailField, passwordField, phoneNumberField;
     NoboButton submitSignUpbtn;
 
     ProgressDialog progressDialog;
-
-    private FirebaseAuth mAuth;
     DatabaseReference userRef;
     FirebaseDatabase database;
-
-
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,43 +68,42 @@ public class SignUp extends AppCompatActivity {
         final String name_Field = nameField.getText().toString().trim();
 
         if (name_Field.isEmpty()) {
-            nameField.setError("معقولة انت نسيت اسمك ولا ايه ☺");
             nameField.requestFocus();
+            Toasty.error(this, "معقولة انت نسيت اسمك ولا ايه ☺", Toast.LENGTH_LONG, false).show();
+
             return;
         }
 
         if (email_Field.isEmpty()) {
-            emailField.setError("انت شكلك كده نسيت تكتب الايميل ☺");
             emailField.requestFocus();
+            Toasty.error(this, "انت شكلك كده نسيت تكتب الايميل ☺", Toast.LENGTH_LONG, false).show();
             return;
         }
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email_Field).matches()) {
-            emailField.setError("اكتب ايميل صح من فضلك لو مفهاش ازعاج يعني ☺");
             emailField.requestFocus();
+            Toasty.error(this, "اكتب ايميل صح من فضلك لو مفهاش ازعاج يعني ☺", Toast.LENGTH_LONG, false).show();
             return;
         }
 
 
-
-
         if (phone_Field.isEmpty()) {
-            phoneNumberField.setError("انت مش فاكر رقم تلفونك ولا ايه ☺");
             phoneNumberField.requestFocus();
+            Toasty.error(this, "انت مش فاكر رقم تلفونك ولا ايه ☺", Toast.LENGTH_LONG, false).show();
             return;
         }
 
         if (password_Field.isEmpty()) {
-            passwordField.setError("معقولة يعني فيه ايميل من غير باسوورد ☺");
             passwordField.requestFocus();
+            Toasty.error(this, "معقولة يعني فيه ايميل من غير باسوورد ☺", Toast.LENGTH_LONG, false).show();
             return;
         }
 
 
         if (password_Field.length() < 8) {
-            passwordField.setError("اقل حاجة 8 حروف او ارقام مش كل شوية هفهمك انا ☺");
             passwordField.requestFocus();
+            Toasty.error(this, "اقل حاجة 8 حروف او ارقام مش كل شوية هفهمك انا ☺", Toast.LENGTH_LONG, false).show();
             return;
         }
 
@@ -114,8 +112,8 @@ public class SignUp extends AppCompatActivity {
         progressDialog.show();
         progressDialog.setMessage("استنى شوية لحد ما نعملك اكونت ☺");
 
-       final String email = emailField.getText().toString().trim();
-       final String password = passwordField.getText().toString().trim();
+        final String email = emailField.getText().toString().trim();
+        final String password = passwordField.getText().toString().trim();
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -125,14 +123,14 @@ public class SignUp extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     writeNewUser(task.getResult().getUser());
                     finish();
-                    Toast.makeText(getApplicationContext(), "مبروك عليك الإيميل يا كبير ☺", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getApplicationContext(), "مبروك عليك الإيميل يا كبير ☺", Toast.LENGTH_LONG,false).show();
 
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toast.makeText(getApplicationContext(), "انت مسجل قبل كده يا معلم ☺", Toast.LENGTH_SHORT).show();
+                        Toasty.error(getApplicationContext(), "انت مسجل قبل كده يا معلم ☺", Toast.LENGTH_LONG).show();
 
                     } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -141,12 +139,12 @@ public class SignUp extends AppCompatActivity {
     }
 
     // [START basic_write]
-        private void writeNewUser(FirebaseUser user) {
+    private void writeNewUser(FirebaseUser user) {
 
-            String email_Field = emailField.getText().toString().trim();
-            String password_Field = passwordField.getText().toString().trim();
-            String phone_Field = phoneNumberField.getText().toString().trim();
-            String name_Field = nameField.getText().toString().trim();
+        String email_Field = emailField.getText().toString().trim();
+        String password_Field = passwordField.getText().toString().trim();
+        String phone_Field = phoneNumberField.getText().toString().trim();
+        String name_Field = nameField.getText().toString().trim();
 
         User newUser = new User(name_Field, email_Field, phone_Field, password_Field);
 

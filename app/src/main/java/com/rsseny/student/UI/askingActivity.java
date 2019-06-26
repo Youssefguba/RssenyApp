@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,8 +33,10 @@ public class askingActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-     FloatingActionButton askBtn;
-     FloatingActionButton knowMoreBtn;
+    FloatingActionButton askBtn;
+    FloatingActionButton knowMoreBtn;
+
+    ActionBar actionBar;
 
 
     @Override
@@ -45,8 +49,24 @@ public class askingActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
+
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_forward_black_24dp);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+
+
         askBtn = findViewById(R.id.askingButton);
+
+
         knowMoreBtn = findViewById(R.id.know_more_button);
+
 
         fetchDataOfMentors();
     }

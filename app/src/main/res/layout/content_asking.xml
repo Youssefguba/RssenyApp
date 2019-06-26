@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -7,8 +7,37 @@
     tools:context=".UI.askingActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F9F9F9"
     tools:showIn="@layout/activity_asking">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#F9F9F9"
+        android:layoutDirection="rtl"
+
+        />
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/world512"
+        android:background="@drawable/img"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/nameOfActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:fontFamily="@font/israrsyria"
+        android:text="إسأل واستشير"
+        />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,4 +48,4 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
