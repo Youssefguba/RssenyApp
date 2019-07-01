@@ -27,7 +27,9 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
             app:nb_text="إعرف أكتر"
             app:nb_textSize="20dp"
             app:nb_textStyle="bold"
@@ -35,7 +37,7 @@
             app:nb_backgroundColor="#fff"
             app:nb_focusColor="#2A5F81"
             app:nb_textColor="#2481B4"
-            app:nb_radius="25dp"/>
+            app:nb_radius="17dp"/>
 
 
         <com.ornach.nobobutton.NoboButton
@@ -44,7 +46,9 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
             app:nb_text="اسأل واستشير"
             app:nb_textSize="20dp"
             app:nb_textStyle="bold"
@@ -52,8 +56,8 @@
             app:nb_backgroundColor="#fff"
             app:nb_focusColor="#2A5F81"
             app:nb_textColor="#2481B4"
-            app:nb_radius="25dp"/>
+            app:nb_radius="17dp"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
 </RelativeLayout>

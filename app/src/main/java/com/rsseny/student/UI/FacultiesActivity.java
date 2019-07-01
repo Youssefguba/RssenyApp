@@ -91,6 +91,19 @@ public class FacultiesActivity extends AppCompatActivity {
         adapter.startListening();
         recycler_menu.setAdapter(adapter);
 
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+        recycler_menu.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.startListening();
+        recycler_menu.setAdapter(adapter);
     }
 }

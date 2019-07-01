@@ -3,6 +3,7 @@ package com.rsseny.student.UI;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +23,9 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,14 +40,13 @@ import org.json.JSONObject;
 
 import java.util.Arrays;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class FirstPage extends AppCompatActivity {
 
     private static final String EMAIL = "email";
-    private static final String NAME = "name";
-    private static final String BIRTHDAY = "user_birthday";
-    private static final String GENDER = "user_gender";
-
+    private static final String TAG = "FirstPage";
 
     CallbackManager callbackManager;
     ProgressDialog progressDialog;
@@ -57,7 +59,7 @@ public class FirstPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-    String email, birthday, gender, name, userLink;
+    String email, id, name;
 
     EditText emailEditText, passwordEditText;
 
@@ -66,7 +68,6 @@ public class FirstPage extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-
     }
 
     @Override
@@ -106,14 +107,19 @@ public class FirstPage extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
         fbutton = findViewById(R.id.btn_facebook);
-        fbutton.setReadPermissions(Arrays.asList(EMAIL, BIRTHDAY, GENDER));
+        fbutton.setReadPermissions(Arrays.asList(EMAIL, "public_profile"));
+
 
         fbutton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                handleFacebookAccessToken(loginResult.getAccessToken());
+
                 progressDialog = new ProgressDialog(FirstPage.this);
                 progressDialog.setMessage("Logging with facebook...");
                 progressDialog.show();
+
+
 
                 GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -121,15 +127,17 @@ public class FirstPage extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         email = object.optString("email");
-                        birthday = object.optString("birthday");
-                        gender = object.optString("gender");
+                        name = object.optString("name");
+                        id = object.optString("id");
                     }
                 });
+
+
 
                 userRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        User user = new User (email, birthday, gender);
+                        User user = new User (id,name, email);
                         userRef.child(AccessToken.getCurrentAccessToken().getUserId()).setValue(user);
                     }
 
@@ -141,10 +149,17 @@ public class FirstPage extends AppCompatActivity {
 
                 //Request Graph API
                 Bundle parameters = new Bundle();
-                parameters.putString("fields","id, name, email, birthday, gender");
+                parameters.putString("fields", "id,name,email");
+
                 graphRequest.setParameters(parameters);
                 graphRequest.executeAsync();
+
+                finish();
+                Intent intent = new Intent(FirstPage.this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
+
 
             @Override
             public void onCancel() {
@@ -171,21 +186,21 @@ public class FirstPage extends AppCompatActivity {
 
 
         if (email_Field.isEmpty()) {
-            emailEditText.setError("انت شكلك كده نسيت تكتب الايميل");
+            emailEditText.setError("انت شكلك كده نسيت تكتب الايميل \uD83D\uDE01");
             emailEditText.requestFocus();
             return;
         }
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email_Field).matches()) {
-            emailEditText.setError("اكتب ايميل صح بعد اذنك ☺");
+            emailEditText.setError("اكتب ايميل صح بعد اذنك \uD83D\uDE01");
             emailEditText.requestFocus();
             return;
         }
 
 
         if (password_Field.isEmpty()) {
-            passwordEditText.setError("انت نسيت الباسوورد ولا ايه ☺");
+            passwordEditText.setError("انت نسيت الباسوورد ولا ايه \uD83D\uDE01");
             passwordEditText.requestFocus();
             return;
         }
@@ -193,7 +208,7 @@ public class FirstPage extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(FirstPage.this);
         progressDialog.show();
-        progressDialog.setMessage("اصبر شوية بنشوف الميل بتاعك راح فين ");
+        progressDialog.setMessage("اصبر شوية بنشوف الميل بتاعك راح فين \uD83D\uDE01");
 
         String email = emailEditText.getText().toString();
         String password = passwordEditText.getText().toString();
@@ -212,15 +227,39 @@ public class FirstPage extends AppCompatActivity {
                             startActivity(intent);
 
                         } else {
-                            Toast.makeText(FirstPage.this, " ياعم ما تتأكد من الايميل والباسوورد بقا ومتقرفناش ☺", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FirstPage.this, " ياعم ما تتأكد من الايميل والباسوورد بقا ومتقرفناش \uD83D\uDE01", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
         }
 
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toasty.error(FirstPage.this, "اتأكد من الايميل والباسوورد بدل ما اتعصب عليك \uD83D\uDE01",
+                                    Toast.LENGTH_SHORT, true).show();
+                        }
+
+                    }
+                });
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
+
 
         //Check if user Signed in or not and logging in directly
         if (mAuth.getCurrentUser() != null) {
@@ -228,6 +267,12 @@ public class FirstPage extends AppCompatActivity {
             Intent intent = new Intent(FirstPage.this, HomeActivity.class);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, FirstPage.class);
+        startActivity(intent);
     }
 
 }

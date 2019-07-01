@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,6 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -30,14 +30,13 @@ import com.rsseny.student.Model.Videos;
 import com.rsseny.student.R;
 import com.rsseny.student.ViewHolder.VideosViewHolder;
 
+import es.dmoral.toasty.Toasty;
+
 import static androidx.core.view.GravityCompat.RELATIVE_LAYOUT_DIRECTION;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    //Todo Don't forget the problem of navigation drawer it's not clickable
-    //Todo Don't forget the title and logo of faculty in the @Toolbar
 
     public static final int END = RELATIVE_LAYOUT_DIRECTION | GravityCompat.END;
 
@@ -96,7 +95,6 @@ public class MainActivity extends AppCompatActivity
         knowMoreBtn = findViewById(R.id.know_more_button);
         askBtn = findViewById(R.id.ask_nav);
 
-
         knowMoreBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +117,11 @@ public class MainActivity extends AppCompatActivity
                 if (Common.isConnectionToInternet(this)) {
                     loadVideosData(videosId);
                 } else {
-                    Toast.makeText(this, "ما تعمل باقة بقى عشان تعرف تتفرج على الفيديوهات ☺", Toast.LENGTH_SHORT).show();
+                    Toasty.error(this,
+                                 "اعمل باقة الاول عشان تعرف تتفرج بطلوا بخل بقى  \uD83D\uDE21 \uD83D\uDE12 ",
+                                  Toasty.LENGTH_LONG,
+                                 false)
+                            .show();
                 }
             }
         }
@@ -187,6 +189,11 @@ public class MainActivity extends AppCompatActivity
             recreate();
 
         } else if (id == R.id.logOutNav) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(this, FirstPage.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
 
         }
 
@@ -194,4 +201,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.END);
         return true;
     }
+
+
 }

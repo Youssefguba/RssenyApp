@@ -1,5 +1,6 @@
 package com.rsseny.student.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,6 @@ import com.squareup.picasso.Picasso;
 
 public class askingActivity extends AppCompatActivity {
 
-
-    //Todo Create actions for Fab button in this activity and MainActivity
 
     FirebaseDatabase database;
     DatabaseReference mentorsRef;
@@ -63,10 +62,22 @@ public class askingActivity extends AppCompatActivity {
 
 
         askBtn = findViewById(R.id.askingButton);
-
-
         knowMoreBtn = findViewById(R.id.know_more_button);
 
+        askBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recreate();
+            }
+        });
+
+        knowMoreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(askingActivity.this, MainActivity.class));
+
+            }
+        });
 
         fetchDataOfMentors();
     }

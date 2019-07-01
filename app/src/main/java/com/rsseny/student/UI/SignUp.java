@@ -69,48 +69,49 @@ public class SignUp extends AppCompatActivity {
 
         if (name_Field.isEmpty()) {
             nameField.requestFocus();
-            Toasty.error(this, "معقولة انت نسيت اسمك ولا ايه ☺", Toast.LENGTH_LONG, false).show();
+            Toasty.error(this, "معقولة انت نسيت اسمك ولا ايه \uD83D\uDE01", Toast.LENGTH_LONG, false).show();
 
             return;
         }
 
         if (email_Field.isEmpty()) {
             emailField.requestFocus();
-            Toasty.error(this, "انت شكلك كده نسيت تكتب الايميل ☺", Toast.LENGTH_LONG, false).show();
+            Toasty.error(this, "انت شكلك كده نسيت تكتب الايميل \uD83D\uDE01", Toast.LENGTH_LONG, false).show();
             return;
         }
 
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email_Field).matches()) {
             emailField.requestFocus();
-            Toasty.error(this, "اكتب ايميل صح من فضلك لو مفهاش ازعاج يعني ☺", Toast.LENGTH_LONG, false).show();
+            Toasty.error(this, "اكتب ايميل صح من فضلك لو مفهاش ازعاج يعني \uD83D\uDE01", Toast.LENGTH_LONG, false).show();
             return;
         }
 
 
         if (phone_Field.isEmpty()) {
             phoneNumberField.requestFocus();
-            Toasty.error(this, "انت مش فاكر رقم تلفونك ولا ايه ☺", Toast.LENGTH_LONG, false).show();
+            Toasty.error(this, "انت مش فاكر رقم تلفونك ولا ايه \uD83D\uDE01", Toast.LENGTH_LONG, false).show();
             return;
         }
 
         if (password_Field.isEmpty()) {
             passwordField.requestFocus();
-            Toasty.error(this, "معقولة يعني فيه ايميل من غير باسوورد ☺", Toast.LENGTH_LONG, false).show();
+            Toasty.error(this, "معقولة يعني فيه ايميل من غير باسوورد \uD83D\uDE01", Toast.LENGTH_LONG, false).show();
+
             return;
         }
 
 
         if (password_Field.length() < 8) {
             passwordField.requestFocus();
-            Toasty.error(this, "اقل حاجة 8 حروف او ارقام مش كل شوية هفهمك انا ☺", Toast.LENGTH_LONG, false).show();
+            Toasty.error(this, "اقل حاجة 8 حروف او ارقام مش كل شوية هفهمك انا \uD83D\uDE01", Toast.LENGTH_LONG, false).show();
             return;
         }
 
 
         progressDialog = new ProgressDialog(SignUp.this);
         progressDialog.show();
-        progressDialog.setMessage("استنى شوية لحد ما نعملك اكونت ☺");
+        progressDialog.setMessage("استنى شوية لحد ما نعملك اكونت \uD83D\uDE01");
 
         final String email = emailField.getText().toString().trim();
         final String password = passwordField.getText().toString().trim();
@@ -123,11 +124,11 @@ public class SignUp extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     writeNewUser(task.getResult().getUser());
                     finish();
-                    Toasty.success(getApplicationContext(), "مبروك عليك الإيميل يا كبير ☺", Toast.LENGTH_LONG,false).show();
+                    Toasty.success(getApplicationContext(), "مبروك عليك الإيميل يا كبير \uD83D\uDE0D \uD83D\uDE01", Toast.LENGTH_LONG,false).show();
 
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                        Toasty.error(getApplicationContext(), "انت مسجل قبل كده يا معلم ☺", Toast.LENGTH_LONG).show();
+                        Toasty.error(getApplicationContext(), "انت مسجل قبل كده يا معلم \uD83D\uDE12", Toast.LENGTH_LONG).show();
 
                     } else {
                         Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
