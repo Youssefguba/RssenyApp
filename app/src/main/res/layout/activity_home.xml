@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#00A6FF"
+    android:background="#fff"
     tools:context=".UI.HomeActivity">
 
     <LinearLayout
@@ -34,6 +34,7 @@
             app:nb_textSize="20dp"
             app:nb_textStyle="bold"
             app:nb_borderWidth="2dp"
+            app:nb_borderColor="#2481B4"
             app:nb_backgroundColor="#fff"
             app:nb_focusColor="#2A5F81"
             app:nb_textColor="#2481B4"
@@ -53,6 +54,7 @@
             app:nb_textSize="20dp"
             app:nb_textStyle="bold"
             app:nb_borderWidth="2dp"
+            app:nb_borderColor="#2481B4"
             app:nb_backgroundColor="#fff"
             app:nb_focusColor="#2A5F81"
             app:nb_textColor="#2481B4"

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.ornach.nobobutton:nobobutton:1.6@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b37336932928714062ae64ac2b86a4a0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b37336932928714062ae64ac2b86a4a0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ornach.nobobutton/nobobutton/1.6/4d36f5426938c8854d3d3df30144a025a05d3bcd/nobobutton-1.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

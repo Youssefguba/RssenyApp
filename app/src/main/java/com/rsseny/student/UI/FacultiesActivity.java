@@ -106,4 +106,10 @@ public class FacultiesActivity extends AppCompatActivity {
         adapter.startListening();
         recycler_menu.setAdapter(adapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
+    }
 }

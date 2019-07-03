@@ -28,13 +28,19 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.rsseny.student.UI.FacultiesActivity" />
+                android:value="com.rsseny.student.UI.HomeActivity" />
 
         </activity>
 
         <activity
             android:name=".UI.FacultiesActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+
+            <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value="com.rsseny.student.UI.HomeActivity" />
+
+    </activity>
         <activity
             android:name=".UI.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

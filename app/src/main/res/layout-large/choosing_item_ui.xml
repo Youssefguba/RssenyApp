@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/choosing_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/choosing_faculty_button"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/curve_shape"
+            android:fontFamily="@font/arahamahcity"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="إدارة أعمال"
+            android:textColor="#00A6FF"
+            android:textSize="28dp"
+            android:textStyle="bold"
+
+            />
+
+        <ImageView
+            android:id="@+id/choosing_faculty_image"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/da7e7"
+
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

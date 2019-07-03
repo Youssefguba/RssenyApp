@@ -28,7 +28,7 @@
         android:text="دحيح نجيب"
         android:fontFamily="@font/stcregular"
         android:textSize="25dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
      />
 
 </LinearLayout>

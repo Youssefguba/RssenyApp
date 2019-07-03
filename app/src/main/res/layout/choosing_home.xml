@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00A6FF"
+    android:background="#fff"
     tools:context=".UI.FacultiesActivity">
 
     <LinearLayout
@@ -15,9 +15,9 @@
         android:layout_marginTop="50dp">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@mipmap/logo_first_page"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@mipmap/bluelogo512"
             android:layout_gravity="center_horizontal" />
 
         <ScrollView

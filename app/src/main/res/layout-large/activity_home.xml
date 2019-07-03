@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fff"
+    tools:context=".UI.HomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="240dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/da7e7" />
+
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/faculties_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="70dp"
+            app:nb_text="إعرف أكتر"
+            app:nb_textSize="35dp"
+            app:nb_textStyle="bold"
+            app:nb_borderWidth="4dp"
+            app:nb_borderColor="#2481B4"
+            app:nb_backgroundColor="#fff"
+            app:nb_focusColor="#2A5F81"
+            app:nb_textColor="#2481B4"
+            app:nb_radius="17dp"/>
+
+
+        <com.ornach.nobobutton.NoboButton
+            android:id="@+id/consultation_button"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            app:nb_text="اسأل واستشير"
+            app:nb_textSize="35dp"
+            app:nb_textStyle="bold"
+            app:nb_borderWidth="4dp"
+            app:nb_borderColor="#2481B4"
+            app:nb_backgroundColor="#fff"
+            app:nb_focusColor="#2A5F81"
+            app:nb_textColor="#2481B4"
+            app:nb_radius="17dp"/>
+
+        </LinearLayout>
+
+</RelativeLayout>
