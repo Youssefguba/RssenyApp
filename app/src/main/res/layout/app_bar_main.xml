@@ -18,7 +18,7 @@
             android:background="?attr/colorAccent"
             app:titleTextColor="#fff"
             android:textAlignment="textStart"
-
+            android:layoutDirection="rtl"
             />
 
 

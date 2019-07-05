@@ -2,6 +2,7 @@ package com.rsseny.student.UI;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -27,12 +28,15 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ornach.nobobutton.NoboButton;
+import com.rsseny.student.Model.Common;
 import com.rsseny.student.Model.User;
 import com.rsseny.student.R;
 
@@ -41,6 +45,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 import es.dmoral.toasty.Toasty;
+
 
 
 public class FirstPage extends AppCompatActivity {
@@ -57,12 +62,11 @@ public class FirstPage extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference userRef;
     private FirebaseAuth mAuth;
-
+    FirebaseUser firebaseUser;
 
     String email, id, name;
-
+    String idUser = "";
     EditText emailEditText, passwordEditText;
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -79,6 +83,8 @@ public class FirstPage extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         userRef = database.getReference("Users");
         mAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
         emailEditText = findViewById(R.id.email_editText);
         passwordEditText = findViewById(R.id.password_editText);
@@ -103,8 +109,6 @@ public class FirstPage extends AppCompatActivity {
         });
 
 
-
-
         callbackManager = CallbackManager.Factory.create();
         fbutton = findViewById(R.id.btn_facebook);
         fbutton.setReadPermissions(Arrays.asList(EMAIL, "public_profile"));
@@ -113,13 +117,12 @@ public class FirstPage extends AppCompatActivity {
         fbutton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
                 handleFacebookAccessToken(loginResult.getAccessToken());
 
                 progressDialog = new ProgressDialog(FirstPage.this);
                 progressDialog.setMessage("Logging with facebook...");
                 progressDialog.show();
-
-
 
                 GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -129,23 +132,14 @@ public class FirstPage extends AppCompatActivity {
                         email = object.optString("email");
                         name = object.optString("name");
                         id = object.optString("id");
+
+                        User dataOfUser = new User (id,name, email);
+                        userRef.child(AccessToken.getCurrentAccessToken().getUserId()).setValue(dataOfUser);
+
+                        Common.mCurrentUser = dataOfUser;
                     }
                 });
 
-
-
-                userRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        User user = new User (id,name, email);
-                        userRef.child(AccessToken.getCurrentAccessToken().getUserId()).setValue(user);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
 
                 //Request Graph API
                 Bundle parameters = new Bundle();
@@ -233,8 +227,10 @@ public class FirstPage extends AppCompatActivity {
                 });
         }
 
+
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
+
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
@@ -243,7 +239,13 @@ public class FirstPage extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            User dataOfUser = new User (id,name, email);
+
+                            userRef.child(AccessToken.getCurrentAccessToken().getUserId()).setValue(dataOfUser);
+                            Common.mCurrentUser = dataOfUser;
+
                             Log.d(TAG, "signInWithCredential:success");
+
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -252,25 +254,46 @@ public class FirstPage extends AppCompatActivity {
                                     Toast.LENGTH_SHORT, true).show();
                         }
 
+
                     }
                 });
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
-
-
-        //Check if user Signed in or not and logging in directly
         if (mAuth.getCurrentUser() != null) {
+
+            idUser = mAuth.getCurrentUser().getUid();
+            Log.d(TAG, "There is the UID " );
+
+            // Get Name of the User..
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    // We equaled userID variable with Common.mCurrent.getUid to get the name of user
+                    // with the uid from the Table of user.
+
+                    // We get a snapshot of the data to read the name of user.
+                     dataSnapshot.child(idUser).getValue(User.class);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
             finish();
             Intent intent = new Intent(FirstPage.this, HomeActivity.class);
             startActivity(intent);
         }
     }
 
-    @Override
-    public void onBackPressed() {
+        @Override
+        public void onBackPressed() {
         Intent intent = new Intent(this, FirstPage.class);
         startActivity(intent);
     }

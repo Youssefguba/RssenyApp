@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#fff"
+    android:background="@color/colorAccent"
     tools:context=".UI.HomeActivity">
 
     <LinearLayout
@@ -20,6 +20,17 @@
             android:layout_marginTop="100dp"
             android:src="@drawable/da7e7" />
 
+        <TextView
+            android:id="@+id/nameOfUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="25sp"
+            android:textColor="#fff"
+            android:fontFamily="@font/stcregular"
+            android:textStyle="bold"
+
+            />
 
         <com.ornach.nobobutton.NoboButton
             android:id="@+id/faculties_button"
@@ -34,7 +45,7 @@
             app:nb_textSize="20dp"
             app:nb_textStyle="bold"
             app:nb_borderWidth="2dp"
-            app:nb_borderColor="#2481B4"
+            app:nb_borderColor="@color/colorPrimaryDark"
             app:nb_backgroundColor="#fff"
             app:nb_focusColor="#2A5F81"
             app:nb_textColor="#2481B4"
@@ -54,7 +65,7 @@
             app:nb_textSize="20dp"
             app:nb_textStyle="bold"
             app:nb_borderWidth="2dp"
-            app:nb_borderColor="#2481B4"
+            app:nb_borderColor="@color/colorPrimaryDark"
             app:nb_backgroundColor="#fff"
             app:nb_focusColor="#2A5F81"
             app:nb_textColor="#2481B4"

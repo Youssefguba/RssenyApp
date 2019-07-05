@@ -35,7 +35,7 @@
             android:textSize="22sp"
             android:textColor="#000"
             android:textColorHint="@color/colorPrimaryDark"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorPrimary"
             />
 
         <EditText
@@ -51,7 +51,7 @@
             android:textSize="22sp"
             android:textColor="#000"
             android:textColorHint="@color/colorPrimaryDark"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorPrimary"
             />
 
         <EditText
@@ -67,7 +67,7 @@
             android:textSize="22sp"
             android:textColor="#000"
             android:textColorHint="@color/colorPrimaryDark"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorPrimary"
 
             />
 
@@ -84,7 +84,7 @@
             android:textSize="22sp"
             android:textColor="#000"
             android:textColorHint="@color/colorPrimaryDark"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="@color/colorPrimary"
 
             />
 

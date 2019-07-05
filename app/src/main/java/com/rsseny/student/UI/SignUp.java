@@ -2,6 +2,7 @@ package com.rsseny.student.UI;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
@@ -16,9 +17,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ornach.nobobutton.NoboButton;
+import com.rsseny.student.Model.Common;
 import com.rsseny.student.Model.User;
 import com.rsseny.student.R;
 
@@ -26,6 +31,7 @@ import es.dmoral.toasty.Toasty;
 
 public class SignUp extends AppCompatActivity {
 
+    private static final String TAG = "SignUp";
     EditText nameField, emailField, passwordField, phoneNumberField;
     NoboButton submitSignUpbtn;
 
@@ -33,6 +39,10 @@ public class SignUp extends AppCompatActivity {
     DatabaseReference userRef;
     FirebaseDatabase database;
     private FirebaseAuth mAuth;
+
+    FirebaseUser userData;
+    String Uid = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,9 +132,11 @@ public class SignUp extends AppCompatActivity {
                 progressDialog.dismiss();
 
                 if (task.isSuccessful()) {
+
                     writeNewUser(task.getResult().getUser());
                     finish();
                     Toasty.success(getApplicationContext(), "مبروك عليك الإيميل يا كبير \uD83D\uDE0D \uD83D\uDE01", Toast.LENGTH_LONG,false).show();
+
 
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
@@ -140,16 +152,24 @@ public class SignUp extends AppCompatActivity {
     }
 
     // [START basic_write]
-    private void writeNewUser(FirebaseUser user) {
+    private void writeNewUser(final FirebaseUser user) {
 
         String email_Field = emailField.getText().toString().trim();
         String password_Field = passwordField.getText().toString().trim();
         String phone_Field = phoneNumberField.getText().toString().trim();
         String name_Field = nameField.getText().toString().trim();
+        String uidOfUser = user.getUid();
 
-        User newUser = new User(name_Field, email_Field, phone_Field, password_Field);
+        final User newUser = new User(uidOfUser, name_Field, email_Field, phone_Field, password_Field);
 
         userRef.child(user.getUid()).setValue(newUser);
+
+        Common.mCurrentUser = newUser;
+
+        Log.d(TAG, "This is the UID in SignUp" + Common.mCurrentUser.getUid());
+
+        Log.d(TAG, "The user info is " + Common.mCurrentUser.getName());
+
     }
     // [END basic_write]
 

@@ -4,7 +4,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.facebook.AccessToken;
+
 public class Common {
+
+    public static User mCurrentUser;
+    public static String mCurrentUserName;
+
 
     public static boolean isConnectionToInternet(Context conetext) {
         ConnectivityManager connectivityManager =
