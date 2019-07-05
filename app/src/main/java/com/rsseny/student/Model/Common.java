@@ -10,6 +10,7 @@ public class Common {
 
     public static User mCurrentUser;
     public static String mCurrentUserName;
+    public static String mCurrentGender;
 
 
     public static boolean isConnectionToInternet(Context conetext) {

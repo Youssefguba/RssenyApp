@@ -12,7 +12,6 @@ public class User {
     private String Middle_Name;
     private String Last_Name;
 
-
     public User(String uid, String name, String email) {
         Name = name;
         Uid = uid;
@@ -32,6 +31,15 @@ public class User {
         Email = email;
         Phone = phone;
         Password = password;
+    }
+
+    public User(String uid, String name, String email, String phone, String password, String gender) {
+        Name = name;
+        Email = email;
+        Gender = gender;
+        Phone = phone;
+        Password = password;
+        Uid = uid;
     }
 
     public User() {

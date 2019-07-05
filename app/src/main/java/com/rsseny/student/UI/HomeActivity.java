@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,8 @@ import com.rsseny.student.Model.Common;
 import com.rsseny.student.Model.User;
 import com.rsseny.student.R;
 
+import org.w3c.dom.Text;
+
 import es.dmoral.toasty.Toasty;
 
 
@@ -33,8 +36,11 @@ import es.dmoral.toasty.Toasty;
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
 
-    NoboButton knowMorebtn, consultationbtn;
-    TextView nameOfUser;
+     NoboButton knowMorebtn;
+     NoboButton consultationbtn;
+     TextView nameOfUser;
+     ImageView boyImage;
+     ImageView girlImage;
 
     FirebaseDatabase database;
     DatabaseReference userRef;
@@ -49,22 +55,22 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-            //Firebase Init
-            database = FirebaseDatabase.getInstance();
-            userRef = database.getReference("Users");
-            mAuth = FirebaseAuth.getInstance();
+        //Firebase Init
+        database = FirebaseDatabase.getInstance();
+        userRef = database.getReference("Users");
+        mAuth = FirebaseAuth.getInstance();
 
-            //Views Init
-            knowMorebtn = findViewById(R.id.faculties_button);
-            consultationbtn = findViewById(R.id.consultation_button);
-            nameOfUser = findViewById(R.id.nameOfUser);
+        //Views Init
+        nameOfUser = findViewById(R.id.nameOfUser);
+        consultationbtn  = findViewById(R.id.consultation_button);
+        knowMorebtn = findViewById(R.id.faculties_button);
 
-            // Get Name of the User..
-        userRef.addValueEventListener(new ValueEventListener() {
+        boyImage = findViewById(R.id.boyImage);
+
+        // Get Name of the User..
+            userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                nameOfUser = findViewById(R.id.nameOfUser);
-
                 // We equaled userID variable with Common.mCurrent.getUid to get the name of user
                 // with the uid from the Table of user.
 
@@ -75,19 +81,36 @@ public class HomeActivity extends AppCompatActivity {
                     User userInfo = dataSnapshot.child(userID).getValue(User.class);
                     nameOfUser.setText(userInfo.getName());
 
+                    if (userInfo.getGender() == null) {
+                        boyImage.setImageResource(R.drawable.da7e7);
+                    } else if (userInfo.getGender().equals("Male")) {
+                        boyImage.setImageResource(R.drawable.da7e7);
+                    } else {
+                        boyImage.setImageResource(R.drawable.girl512);
+                    }
+
                     Log.d(TAG, "There is the UID " + userInfo.getUid());
                     Log.d(TAG, "There is the Name " + userInfo.getName());
+                }
 
-                    //When Login with Facebook
-                } else if (AccessToken.getCurrentAccessToken().getUserId() != null){
+
+                //When Login with Facebook
+                else if (AccessToken.getCurrentAccessToken() != null) {
                     userFBID = AccessToken.getCurrentAccessToken().getUserId();
                     //We get a snapshot of the data to read the name of user.
                     User userInfo = dataSnapshot.child(userFBID).getValue(User.class);
                     nameOfUser.setText(userInfo.getName());
 
-                    Log.d(TAG, "There is the UID " + userInfo.getUid());
+                    if (userInfo.getGender() == null) {
+                        boyImage.setImageResource(R.drawable.da7e7);
+                    } else if (userInfo.getGender().equals("Male")) {
+                        boyImage.setImageResource(R.drawable.da7e7);
+                    } else {
+                        boyImage.setImageResource(R.drawable.girl512);
+                    }                     Log.d(TAG, "There is the UID " + userInfo.getUid());
                     Log.d(TAG, "There is the Name " + userInfo.getName());
                 }
+
                     //When Login with mail
                 else {
                     idUser = mAuth.getCurrentUser().getUid();
@@ -95,11 +118,21 @@ public class HomeActivity extends AppCompatActivity {
                     User userInfo = dataSnapshot.child(idUser).getValue(User.class);
                     nameOfUser.setText(userInfo.getName());
 
+
+                    if (userInfo.getGender() == null) {
+                        boyImage.setImageResource(R.drawable.da7e7);
+                    } else if (userInfo.getGender().equals("Male")) {
+                        boyImage.setImageResource(R.drawable.da7e7);
+                    } else {
+                        boyImage.setImageResource(R.drawable.girl512);
+                    }
+
                     Log.d(TAG, "There is the UID " + userInfo.getUid());
                     Log.d(TAG, "There is the Name " + userInfo.getName());
                 }
-            }
 
+
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -118,6 +151,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private boolean checkInternet() {
         if (Common.isConnectionToInternet(this)) {
+
             knowMorebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

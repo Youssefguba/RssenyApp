@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,6 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity
     String userFBID = "";
 
     TextView nameOfUser;
+    ImageView imageViewOfNav;
 
     @SuppressLint("ResourceType")
     @Override
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity
 
         View headerView = navigationView.getHeaderView(0);
         nameOfUser = headerView.findViewById(R.id.nameOfUser);
+        imageViewOfNav = headerView.findViewById(R.id.imageView_nav);
 
 
         //Buttons onClickListener Method
@@ -135,9 +137,10 @@ public class MainActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 View headerView = navigationView.getHeaderView(0);
                 nameOfUser = headerView.findViewById(R.id.nameOfUser);
+                imageViewOfNav = headerView.findViewById(R.id.imageView_nav);
 
 
-                    //This implement when the first time used
+                //This implement when the first time used
                 if (Common.mCurrentUser != null) {
                     userID = Common.mCurrentUser.getUid();
 
@@ -148,37 +151,64 @@ public class MainActivity extends AppCompatActivity
                     User userInfo = dataSnapshot.child(userID).getValue(User.class);
                     nameOfUser.setText(userInfo.getName());
 
+                    if (userInfo.getGender() == null) {
+                        imageViewOfNav.setImageResource(R.drawable.da7e7);
+                    } else if (userInfo.getGender().equals("Male")) {
+                        imageViewOfNav.setImageResource(R.drawable.da7e7);
+                    } else {
+                        imageViewOfNav.setImageResource(R.drawable.girl512);
+                    }
+
                     Log.d(TAG, "There is the UID " + userInfo.getUid());
                     Log.d(TAG, "There is the Name " + userInfo.getName());
+                }
 
-                    // This implement when login or Sign up with Facebook
-                } else if (AccessToken.getCurrentAccessToken().getUserId() != null){
+                //When Login with Facebook
+                else if (AccessToken.getCurrentAccessToken() != null) {
                     userFBID = AccessToken.getCurrentAccessToken().getUserId();
                     //We get a snapshot of the data to read the name of user.
                     User userInfo = dataSnapshot.child(userFBID).getValue(User.class);
                     nameOfUser.setText(userInfo.getName());
 
+                    if (userInfo.getGender() == null) {
+                        imageViewOfNav.setImageResource(R.drawable.da7e7);
+                    } else if (userInfo.getGender().equals("Male")) {
+                        imageViewOfNav.setImageResource(R.drawable.da7e7);
+                    } else {
+                        imageViewOfNav.setImageResource(R.drawable.girl512);
+                    }
+
                     Log.d(TAG, "There is the UID " + userInfo.getUid());
                     Log.d(TAG, "There is the Name " + userInfo.getName());
                 }
-                    //This implement when the user login with normal way of mail .. second time using and forth
+
+                //When Login with mail
                 else {
                     idUser = mAuth.getCurrentUser().getUid();
                     //We get a snapshot of the data to read the name of user.
                     User userInfo = dataSnapshot.child(idUser).getValue(User.class);
                     nameOfUser.setText(userInfo.getName());
 
+
+                    if (userInfo.getGender() == null) {
+                        imageViewOfNav.setImageResource(R.drawable.da7e7);
+                    } else if (userInfo.getGender().equals("Male")) {
+                        imageViewOfNav.setImageResource(R.drawable.da7e7);
+                    } else {
+                        imageViewOfNav.setImageResource(R.drawable.girl512);
+                    }
+
                     Log.d(TAG, "There is the UID " + userInfo.getUid());
                     Log.d(TAG, "There is the Name " + userInfo.getName());
                 }
-            }
 
+
+            }
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
-
+                }
+            });
 
 
         // Get data from firebase according to choosing of item..
@@ -238,12 +268,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(END)) {
             drawer.closeDrawer(END);
-        } else {
-            drawer.openDrawer(END);
-
-            super.onBackPressed();
         }
+            super.onBackPressed();
     }
+
 
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -276,7 +276,7 @@ public class FirstPage extends AppCompatActivity {
                     // with the uid from the Table of user.
 
                     // We get a snapshot of the data to read the name of user.
-                     dataSnapshot.child(idUser).getValue(User.class);
+                    dataSnapshot.child(idUser).getValue(User.class);
 
                 }
 

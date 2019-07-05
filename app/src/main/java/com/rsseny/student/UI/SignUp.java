@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,13 +26,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ornach.nobobutton.NoboButton;
+import com.rsseny.student.Adapter.SpinnerAdapter;
 import com.rsseny.student.Model.Common;
 import com.rsseny.student.Model.User;
 import com.rsseny.student.R;
 
 import es.dmoral.toasty.Toasty;
 
-public class SignUp extends AppCompatActivity {
+public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "SignUp";
     EditText nameField, emailField, passwordField, phoneNumberField;
@@ -39,9 +43,11 @@ public class SignUp extends AppCompatActivity {
     DatabaseReference userRef;
     FirebaseDatabase database;
     private FirebaseAuth mAuth;
+    public String currentGender;
 
-    FirebaseUser userData;
-    String Uid = "";
+
+    String[] genderList ={"Male", "Female"};
+    int[] imgList = {R.drawable.officer, R.drawable.coordinator};
 
 
     @Override
@@ -59,6 +65,12 @@ public class SignUp extends AppCompatActivity {
         userRef = database.getReference("Users");
         mAuth = FirebaseAuth.getInstance();
 
+        //Spinner Init
+        Spinner spin = (Spinner) findViewById(R.id.spinnerOfGender);
+        spin.setOnItemSelectedListener(SignUp.this);
+
+        SpinnerAdapter customAdapter = new SpinnerAdapter(getApplicationContext(), imgList, genderList);
+        spin.setAdapter(customAdapter);
 
         submitSignUpbtn = findViewById(R.id.signup_submit);
         submitSignUpbtn.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +92,6 @@ public class SignUp extends AppCompatActivity {
         if (name_Field.isEmpty()) {
             nameField.requestFocus();
             Toasty.error(this, "معقولة انت نسيت اسمك ولا ايه \uD83D\uDE01", Toast.LENGTH_LONG, false).show();
-
             return;
         }
 
@@ -151,8 +162,20 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        currentGender = genderList[i];
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        currentGender = genderList[0];
+    }
+
+
     // [START basic_write]
-    private void writeNewUser(final FirebaseUser user) {
+    public void writeNewUser(final FirebaseUser user) {
 
         String email_Field = emailField.getText().toString().trim();
         String password_Field = passwordField.getText().toString().trim();
@@ -160,18 +183,17 @@ public class SignUp extends AppCompatActivity {
         String name_Field = nameField.getText().toString().trim();
         String uidOfUser = user.getUid();
 
-        final User newUser = new User(uidOfUser, name_Field, email_Field, phone_Field, password_Field);
+        final User newUser = new User(uidOfUser, name_Field, email_Field, phone_Field, password_Field, currentGender);
 
         userRef.child(user.getUid()).setValue(newUser);
-
         Common.mCurrentUser = newUser;
 
         Log.d(TAG, "This is the UID in SignUp" + Common.mCurrentUser.getUid());
-
         Log.d(TAG, "The user info is " + Common.mCurrentUser.getName());
 
     }
     // [END basic_write]
+
 
 
 }
