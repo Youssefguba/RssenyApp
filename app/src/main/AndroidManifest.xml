@@ -16,31 +16,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-
+        <activity android:name=".UI.MentorDetails"></activity>
+        <activity
+            android:name=".UI.HomePage"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UI.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".UI.askingActivity"
+        <activity
+            android:name=".UI.askingActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rsseny.student.UI.HomeActivity" />
-
         </activity>
-
         <activity
             android:name=".UI.FacultiesActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
             <meta-data
-        android:name="android.support.PARENT_ACTIVITY"
-        android:value="com.rsseny.student.UI.HomeActivity" />
-
-    </activity>
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rsseny.student.UI.HomeActivity" />
+        </activity>
         <activity
             android:name=".UI.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
@@ -61,8 +59,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".UI.FirstPage"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

@@ -3,4 +3,6 @@
     <color name="colorPrimary">#CAD6DB</color>CAD6DB
     <color name="colorPrimaryDark">#9C303030</color>
     <color name="colorAccent">#00A6FF</color>
+    <color name="overlayBackground">#57222222</color>
+
 </resources>

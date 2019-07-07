@@ -1,10 +1,13 @@
 package com.rsseny.student.UI;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.pnikosis.materialishprogress.ProgressWheel;
 import com.rsseny.student.Interface.ItemClickListener;
 import com.rsseny.student.Model.ChoosingItem;
 import com.rsseny.student.R;
@@ -28,9 +32,14 @@ import com.squareup.picasso.Picasso;
 * */
 public class FacultiesActivity extends AppCompatActivity {
 
+    private static final String TAG = "FacultiesActivity";
+
     FirebaseDatabase database;
     DatabaseReference choosingRef;
     FirebaseRecyclerAdapter<ChoosingItem, ChoosingViewHolder> adapter;
+
+    ProgressWheel progressWheel;
+    FrameLayout progressOverLay;
 
     RecyclerView recycler_menu;
 
@@ -43,6 +52,9 @@ public class FacultiesActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         choosingRef = database.getReference("Faculties");
+
+        progressWheel = findViewById(R.id.progress_wheel);
+        progressOverLay = findViewById(R.id.progress_overlay);
 
         recycler_menu = findViewById(R.id.recycler_menu);
         recycler_menu.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
@@ -57,6 +69,11 @@ public class FacultiesActivity extends AppCompatActivity {
                 .setQuery(choosingRef, ChoosingItem.class)
                 .build();
 
+        progressOverLay = findViewById(R.id.progress_overlay);
+        progressOverLay.setVisibility(View.VISIBLE);
+
+
+        Log.d(TAG, "Tell me if the progress bar visible or not" );
         adapter = new FirebaseRecyclerAdapter<ChoosingItem, ChoosingViewHolder>(options) {
 
 
@@ -88,8 +105,11 @@ public class FacultiesActivity extends AppCompatActivity {
             }
         };
 
+        progressOverLay.setVisibility(View.INVISIBLE);
+
         adapter.startListening();
         recycler_menu.setAdapter(adapter);
+
 
     }
 

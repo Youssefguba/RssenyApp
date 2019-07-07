@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,6 +23,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubeThumbnailLoader;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,12 +41,11 @@ import com.rsseny.student.Model.Videos;
 import com.rsseny.student.R;
 import com.rsseny.student.ViewHolder.VideosViewHolder;
 
-
 import es.dmoral.toasty.Toasty;
 
 import static androidx.core.view.GravityCompat.END;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends YouTubeBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
@@ -83,7 +86,6 @@ public class MainActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
 
         toolbar.setTitle("الكليات");
-        setSupportActionBar(toolbar);
 
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -232,7 +234,7 @@ public class MainActivity extends AppCompatActivity
     private void loadVideosData(String videosId) {
 
         // Load List of videos based on video category id
-        Query loadData = vidRef.orderByChild("MenuId").equalTo(videosId);
+        Query loadData = vidRef.orderByChild("menuId").equalTo(videosId);
 
         FirebaseRecyclerOptions<Videos> options = new FirebaseRecyclerOptions.Builder<Videos>()
                 .setQuery(loadData, Videos.class)
@@ -242,11 +244,39 @@ public class MainActivity extends AppCompatActivity
 
             @SuppressLint("SetJavaScriptEnabled")
             @Override
-            protected void onBindViewHolder(@NonNull VideosViewHolder videosViewHolder, int i, @NonNull Videos videos) {
+            protected void onBindViewHolder(@NonNull final VideosViewHolder videosViewHolder, int i, @NonNull final Videos videos) {
                 videosViewHolder.nameOfVideo.setText(videos.getnameOfVideo());
-                videosViewHolder.videoItem.getSettings().setJavaScriptEnabled(true);
-                videosViewHolder.videoItem.loadData(videos.getvideoLink(), "text/html", "utf-8");
+                videosViewHolder.youTubeThumbnailView.initialize(videos.getvideoLink(), new YouTubeThumbnailView.OnInitializedListener() {
+                    @Override
+                    public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
+                        youTubeThumbnailLoader.setVideo(videos.getvideoLink());
+                    }
 
+                    @Override
+                    public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
+                    }
+                });
+
+                videosViewHolder.videoItem.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        videosViewHolder.youTubeThumbnailView.setVisibility(View.INVISIBLE);
+                        videosViewHolder.nameOfVideo.setVisibility(View.INVISIBLE);
+                        videosViewHolder.linearLayout.setVisibility(View.INVISIBLE);
+                        videosViewHolder.videoItem.initialize(videos.getvideoLink(), new YouTubePlayer.OnInitializedListener() {
+                            @Override
+                            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                                youTubePlayer.cueVideo(videos.getvideoLink());
+
+                            }
+
+                            @Override
+                            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
+                            }
+                        });
+                    }
+                });
             }
 
             @NonNull
@@ -257,7 +287,6 @@ public class MainActivity extends AppCompatActivity
                 return new VideosViewHolder(view);
             }
         };
-
         adapter.startListening();
         recyclerView.setAdapter(adapter);
     }

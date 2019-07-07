@@ -66,7 +66,7 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
         mAuth = FirebaseAuth.getInstance();
 
         //Spinner Init
-        Spinner spin = (Spinner) findViewById(R.id.spinnerOfGender);
+        Spinner spin = findViewById(R.id.spinnerOfGender);
         spin.setOnItemSelectedListener(SignUp.this);
 
         SpinnerAdapter customAdapter = new SpinnerAdapter(getApplicationContext(), imgList, genderList);
@@ -143,7 +143,6 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
                 progressDialog.dismiss();
 
                 if (task.isSuccessful()) {
-
                     writeNewUser(task.getResult().getUser());
                     finish();
                     Toasty.success(getApplicationContext(), "مبروك عليك الإيميل يا كبير \uD83D\uDE0D \uD83D\uDE01", Toast.LENGTH_LONG,false).show();
@@ -188,6 +187,10 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
         userRef.child(user.getUid()).setValue(newUser);
         Common.mCurrentUser = newUser;
 
+        Log.d(TAG, "This is the Gender in SignUp" + currentGender);
+        Log.d(TAG, "This is the name in SignUp" + Common.mCurrentUser.getName());
+        Log.d(TAG, "This is the Email in SignUp" + Common.mCurrentUser.getEmail());
+        Log.d(TAG, "This is the Phone in SignUp" + Common.mCurrentUser.getPhone());
         Log.d(TAG, "This is the UID in SignUp" + Common.mCurrentUser.getUid());
         Log.d(TAG, "The user info is " + Common.mCurrentUser.getName());
 

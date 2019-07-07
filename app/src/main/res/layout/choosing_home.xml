@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".UI.FacultiesActivity"
     android:background="#fff">
@@ -34,5 +35,12 @@
 
 
     </LinearLayout>
-        </RelativeLayout>
+
+        <include layout="@layout/custom_progress_wheel"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            />
+
+</RelativeLayout>
 </ScrollView>

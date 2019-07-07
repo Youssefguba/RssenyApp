@@ -20,7 +20,7 @@
 
 
     <ImageView
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/world512"
@@ -32,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:textColor="@color/colorAccent"
         android:layout_gravity="center"
         android:fontFamily="@font/israrsyria"
         android:text="إسأل واستشير" />
