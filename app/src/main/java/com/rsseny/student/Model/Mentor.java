@@ -1,18 +1,18 @@
 package com.rsseny.student.Model;
 
 public class Mentor {
-    private String Name, PhoneNumber, Cost ,Photo, Description;
+    private String Name, PhoneNumber, Cost ,Photo, Description, Details;
 
-    public Mentor(String name, String phoneNumber, String cost, String photo, String description) {
+    public Mentor(String name, String phoneNumber, String cost, String photo, String description, String details) {
         Name = name;
         PhoneNumber = phoneNumber;
         Cost = cost;
         Photo = photo;
         Description = description;
+        Details = details;
     }
 
-    public Mentor() {
-    }
+    public Mentor() {}
 
     public String getName() {
         return Name;
@@ -52,5 +52,13 @@ public class Mentor {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    public String getDetails() {
+        return Details;
+    }
+
+    public void setDetails(String details) {
+        Details = details;
     }
 }

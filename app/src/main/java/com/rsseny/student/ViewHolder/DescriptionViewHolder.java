@@ -27,7 +27,6 @@ public class DescriptionViewHolder extends RecyclerView.ViewHolder implements Vi
         titleOfMentor = itemView.findViewById(R.id.title_of_mentor);
         priceOfMentor = itemView.findViewById(R.id.price_of_mentor);
         descriptionOfMentor = itemView.findViewById(R.id.description_of_mentor);
-        exitOfLayout = itemView.findViewById(R.id.exit_description);
     }
 
 

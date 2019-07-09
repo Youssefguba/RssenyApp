@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rsseny</string>
+    <string name="app_name">Rsseny - رسيني</string>
     <string name="facebook_app_id">380222185952408</string>
     <string name="fb_login_protocol_scheme">fb380222185952408</string>
     <string name="title_activity_main">MainActivity</string>

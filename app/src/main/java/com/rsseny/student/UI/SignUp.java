@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,11 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.ornach.nobobutton.NoboButton;
 import com.rsseny.student.Adapter.SpinnerAdapter;
 import com.rsseny.student.Model.Common;
@@ -145,7 +141,7 @@ public class SignUp extends AppCompatActivity implements AdapterView.OnItemSelec
                 if (task.isSuccessful()) {
                     writeNewUser(task.getResult().getUser());
                     finish();
-                    Toasty.success(getApplicationContext(), "مبروك عليك الإيميل يا كبير \uD83D\uDE0D \uD83D\uDE01", Toast.LENGTH_LONG,false).show();
+                    Toasty.success(getApplicationContext(), "مبروك عليك الإيميل يا بشمهندس \uD83D\uDE0D \uD83D\uDE01", Toast.LENGTH_LONG,false).show();
 
 
                 } else {

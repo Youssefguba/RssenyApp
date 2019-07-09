@@ -10,17 +10,12 @@
     android:background="@drawable/background_of_mentor_description"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/exit_description"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/error" />
+
 
     <TextView
         android:id="@+id/title_of_mentor"
         android:layout_width="wrap_content"
+        android:layout_weight="4.5"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:fontFamily="@font/israrsyria"

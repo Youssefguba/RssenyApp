@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,24 +22,22 @@ import com.rsseny.student.Model.Common;
 import com.rsseny.student.Model.User;
 import com.rsseny.student.R;
 
-import org.w3c.dom.Text;
-
 import es.dmoral.toasty.Toasty;
 
 
 /*
-* This activity is like a "Link or Bridge" between
+ * This activity is like a "Link or Bridge" between
  * SignIn Activity(FirstPage) and Faculties or Consultation Activities..
  *
-* */
+ * */
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
 
-     NoboButton knowMorebtn;
-     NoboButton consultationbtn;
-     TextView nameOfUser;
-     ImageView boyImage;
-     ImageView girlImage;
+    NoboButton knowMorebtn;
+    NoboButton consultationbtn;
+    TextView nameOfUser;
+    ImageView boyImage;
+    ImageView girlImage;
 
     FirebaseDatabase database;
     DatabaseReference userRef;
@@ -62,13 +59,13 @@ public class HomeActivity extends AppCompatActivity {
 
         //Views Init
         nameOfUser = findViewById(R.id.nameOfUser);
-        consultationbtn  = findViewById(R.id.consultation_button);
+        consultationbtn = findViewById(R.id.consultation_button);
         knowMorebtn = findViewById(R.id.faculties_button);
 
         boyImage = findViewById(R.id.boyImage);
 
         // Get Name of the User..
-            userRef.addValueEventListener(new ValueEventListener() {
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // We equaled userID variable with Common.mCurrent.getUid to get the name of user
@@ -107,11 +104,12 @@ public class HomeActivity extends AppCompatActivity {
                         boyImage.setImageResource(R.drawable.da7e7);
                     } else {
                         boyImage.setImageResource(R.drawable.girl512);
-                    }                     Log.d(TAG, "There is the UID " + userInfo.getUid());
+                    }
+                    Log.d(TAG, "There is the UID " + userInfo.getUid());
                     Log.d(TAG, "There is the Name " + userInfo.getName());
                 }
 
-                    //When Login with mail
+                //When Login with mail
                 else {
                     idUser = mAuth.getCurrentUser().getUid();
                     //We get a snapshot of the data to read the name of user.
@@ -133,21 +131,22 @@ public class HomeActivity extends AppCompatActivity {
 
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
-            if (checkInternet()){
-               Toasty.error(
+        if (checkInternet()) {
+            Toasty.error(
                     this,
                     "اعمل باقة الاول عشان تعرف تتفرج بطلوا بخل بقى  \uD83D\uDE21 \uD83D\uDE12 ",
                     Toasty.LENGTH_LONG,
                     false)
                     .show();
-            }
         }
+    }
 
     private boolean checkInternet() {
         if (Common.isConnectionToInternet(this)) {
@@ -180,7 +179,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (checkInternet()){
+        if (checkInternet()) {
             Toasty.error(
                     this,
                     "اعمل باقة الاول عشان تعرف تتفرج بطلوا بخل بقى  \uD83D\uDE21 \uD83D\uDE12 ",

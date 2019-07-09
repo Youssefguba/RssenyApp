@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,6 +28,12 @@ import com.squareup.picasso.Picasso;
 
 public class askingActivity extends AppCompatActivity {
 
+    public TextView titleOfMentor, descriptionOfMentor, priceOfMentor;
+    public NoboButton chooseButtonOfDescription;
+    public View show_details_of_mentor;
+    public AlertDialog.Builder builder;
+    public LayoutInflater inflater;
+
     FirebaseDatabase database;
     DatabaseReference mentorsRef;
     FirebaseRecyclerAdapter<Mentor, MentorViewHolder> adapter;
@@ -39,14 +44,6 @@ public class askingActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ActionBar actionBar;
 
-    NoboButton detailsButton;
-    NoboButton chooseButton;
-    public ImageView exitbutton;
-    public TextView titleOfMentor, descriptionOfMentor, priceOfMentor;
-    public NoboButton chooseButtonOfDescription;
-    public View show_details_of_mentor;
-    public AlertDialog.Builder builder;
-    public LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +86,7 @@ public class askingActivity extends AppCompatActivity {
         fetchDataOfMentors();
     }
 
+    // This method to call data from Firebase Database
     private void fetchDataOfMentors() {
         FirebaseRecyclerOptions<Mentor> options = new FirebaseRecyclerOptions.Builder<Mentor>()
                 .setQuery(mentorsRef, Mentor.class)
@@ -104,16 +102,14 @@ public class askingActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         showDetailsOfMentor();
-                        titleOfMentor.setText(mentor.getName());
-                        descriptionOfMentor.setText(mentor.getDescription());
+                        titleOfMentor.setText(mentor.getDescription());
+                        descriptionOfMentor.setText(mentor.getDetails());
                         priceOfMentor.setText(mentor.getCost());
                     }
                 });
                 Picasso.with(getBaseContext())
                         .load(mentor.getPhoto())
                         .into(mentorViewHolder.photoOfMentor);
-
-
             }
 
             @NonNull
@@ -121,9 +117,6 @@ public class askingActivity extends AppCompatActivity {
             public MentorViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.mentor_item_ui, parent, false);
-
-
-
                 return new MentorViewHolder(view);
             }
         };
@@ -134,15 +127,16 @@ public class askingActivity extends AppCompatActivity {
     }
 
 
+    // This called when pressed on المزيد Button to show details of Mentor in Dialog.
     private void showDetailsOfMentor() {
         builder = new AlertDialog.Builder(this);
         inflater = this.getLayoutInflater();
         show_details_of_mentor = inflater.inflate(R.layout.description_of_metor, null);
-        exitbutton = show_details_of_mentor.findViewById(R.id.exit_description);
         titleOfMentor = show_details_of_mentor.findViewById(R.id.title_of_mentor);
         descriptionOfMentor = show_details_of_mentor.findViewById(R.id.description_of_mentor);
         priceOfMentor = show_details_of_mentor.findViewById(R.id.price_of_mentor);
         chooseButtonOfDescription = show_details_of_mentor.findViewById(R.id.chooseButtonOfMentor);
+
         builder.setView(show_details_of_mentor);
         builder.show();
 
@@ -151,6 +145,6 @@ public class askingActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(askingActivity.this, HomeActivity.class));
     }
 }
