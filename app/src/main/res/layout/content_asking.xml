@@ -7,7 +7,7 @@
     tools:context=".UI.askingActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F9F9"
+    android:background="#fff"
     tools:showIn="@layout/activity_asking">
 
 
@@ -15,9 +15,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#F9F9F9"
+        android:background="#fff"
         android:layoutDirection="rtl" />
-
 
     <ImageView
         android:layout_marginTop="10dp"

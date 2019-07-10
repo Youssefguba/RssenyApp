@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="7dp"
+            android:layoutDirection="rtl"
             android:fontFamily="@font/hacenvanilla"
             android:gravity="right"
             android:text="يوسف"
@@ -128,8 +129,6 @@
                     app:nb_focusColor="#2A5F81"
                     app:nb_textColor="#fff"
                     app:nb_radius="17dp" />
-
-
 
                 </LinearLayout>
 

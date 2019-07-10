@@ -1,46 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".UI.FacultiesActivity"
-    android:background="#fff">
+    android:background="#fff"
+    tools:context=".UI.FacultiesActivity">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:src="@mipmap/bluelogo512"
-            android:layout_gravity="center_horizontal" />
-
-
-        <include layout="@layout/activity_faculties"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="match_parent"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
-            />
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/bluelogo512" />
 
 
-    </LinearLayout>
+            <include
+                layout="@layout/activity_faculties"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp" />
 
-        <include layout="@layout/custom_progress_wheel"
-            android:layout_centerInParent="true"
-            android:layout_height="wrap_content"
+
+        </LinearLayout>
+
+        <include
+            layout="@layout/custom_progress_wheel"
             android:layout_width="wrap_content"
-            />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

@@ -10,7 +10,6 @@
             android:icon="@drawable/home"
             android:title="الصفحة الشخصية"
             app:showAsAction="ifRoom"
-
             />
     </group>
 
@@ -19,24 +18,23 @@
             android:id="@+id/knowMoreNav"
             android:title="إعرف أكتر"
             android:icon="@drawable/knowmore"
-            app:showAsAction="ifRoom"
-
+            app:showAsAction="always"
             />
-
         <item
             android:id="@+id/askNavigation"
             android:title="اسأل واستشير"
             android:icon="@drawable/world"
             app:showAsAction="ifRoom"
-            />
-
-        <item   android:title="تسجيل خروج"
-                android:id="@+id/logOutNav"
-                android:icon="@drawable/ic_exit_to_app_black_24dp"
-                app:showAsAction="ifRoom"
 
             />
 
+        <item
+            android:title="تسجيل خروج"
+            android:id="@+id/logOutNav"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            app:showAsAction="ifRoom"
+
+            />
     </group>
 
 </menu>
