@@ -107,28 +107,28 @@ public class MainActivity extends YouTubeBaseActivity
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
 
         //Views Init
-        knowMoreBtn = findViewById(R.id.know_more_button);
-        askBtn = findViewById(R.id.ask_nav);
+//        knowMoreBtn = findViewById(R.id.know_more_button);
+//        askBtn = findViewById(R.id.ask_nav);
 
         View headerView = navigationView.getHeaderView(0);
         nameOfUser = headerView.findViewById(R.id.nameOfUser);
         imageViewOfNav = headerView.findViewById(R.id.imageView_nav);
 
 
-        //Buttons onClickListener Method
-        knowMoreBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recreate();
-            }
-        });
-        askBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, askingActivity.class));
-
-            }
-        });
+//        //Buttons onClickListener Method
+//        knowMoreBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                recreate();
+//            }
+//        });
+//        askBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity.this, askingActivity.class));
+//
+//            }
+//        });
 
         // Get Name of the User..
         userRef.addValueEventListener(new ValueEventListener() {
@@ -272,6 +272,7 @@ public class MainActivity extends YouTubeBaseActivity
 
                             @Override
                             public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                                Log.i("youtube:Fail", youTubeInitializationResult.toString());
 
                             }
                         });
