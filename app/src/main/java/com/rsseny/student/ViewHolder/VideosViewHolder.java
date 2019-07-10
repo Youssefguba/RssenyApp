@@ -1,6 +1,7 @@
 package com.rsseny.student.ViewHolder;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class VideosViewHolder extends RecyclerView.ViewHolder implements View.On
     public TextView nameOfVideo;
     public ItemClickListener itemClickListener;
     public LinearLayout linearLayout;
+    public ImageView playArrow;
 
     public VideosViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -27,6 +29,7 @@ public class VideosViewHolder extends RecyclerView.ViewHolder implements View.On
         nameOfVideo = itemView.findViewById(R.id.name_of_video);
         youTubeThumbnailView = itemView.findViewById(R.id.video_thumbnail);
         linearLayout = itemView.findViewById(R.id.background_of_text);
+        playArrow = itemView.findViewById(R.id.playArrow);
     }
 
     @Override

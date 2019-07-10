@@ -262,6 +262,7 @@ public class MainActivity extends YouTubeBaseActivity
                         videosViewHolder.youTubeThumbnailView.setVisibility(View.INVISIBLE);
                         videosViewHolder.nameOfVideo.setVisibility(View.INVISIBLE);
                         videosViewHolder.linearLayout.setVisibility(View.INVISIBLE);
+                        videosViewHolder.playArrow.setVisibility(View.INVISIBLE);
                         videosViewHolder.videoItem.initialize(videos.getvideoLink(), new YouTubePlayer.OnInitializedListener() {
                             @Override
                             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {

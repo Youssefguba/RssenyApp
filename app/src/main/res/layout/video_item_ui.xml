@@ -40,9 +40,15 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/curve_shape_video"
                     android:scaleType="fitXY"
-                    android:visibility="visible"
+                    android:visibility="visible" />
 
-                    />
+                <ImageView
+                    android:id="@+id/playArrow"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_play_arrow_black_24dp"
+                    android:visibility="visible" />
 
 
                 <LinearLayout
@@ -71,36 +77,13 @@
                         android:visibility="visible"
                         android:textColor="#fff"
                         android:textSize="20sp" />
+
                 </LinearLayout>
 
             </RelativeLayout>
+
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
-
-    <!--<androidx.cardview.widget.CardView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="40dp"-->
-    <!--android:layout_marginStart="20dp"-->
-    <!--android:layout_marginTop="-10dp"-->
-    <!--android:layout_marginEnd="20dp"-->
-    <!--app:cardCornerRadius="5dp"-->
-    <!--app:cardElevation="4dp">-->
-
-
-    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-    <!--&lt;!&ndash;android:id="@+id/name_of_video"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_marginStart="7dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:layout_marginEnd="7dp"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:fontFamily="@font/arahamahcity"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:textColor="#000"&ndash;&gt;-->
-    <!--&lt;!&ndash;android:textSize="25dp" />&ndash;&gt;-->
-
-
-    <!--</androidx.cardview.widget.CardView>-->
 
 </LinearLayout>
