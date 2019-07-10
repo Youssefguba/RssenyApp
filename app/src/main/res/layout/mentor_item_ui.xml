@@ -5,7 +5,7 @@
     android:layout_height="100dp"
     android:layout_marginTop="7dp"
     android:layout_marginBottom="7dp"
-    android:background="@color/colorAccent"
+    android:background="#fff"
     android:layoutDirection="rtl"
     android:orientation="horizontal"
     android:weightSum="5">
@@ -39,9 +39,11 @@
             android:fontFamily="@font/hacenvanilla"
             android:gravity="right"
             android:text="يوسف"
-            android:textColor="#fff"
+            android:textColor="@color/colorAccent"
             android:textSize="17dp"
-            android:textStyle="bold" />
+
+
+            />
 
         <TextView
             android:id="@+id/descriptionOfMentor"
@@ -53,9 +55,9 @@
             android:gravity="right"
             android:layoutDirection="rtl"
             android:text="Youssef"
-            android:textColor="#fff"
+            android:textColor="@color/colorAccent"
             android:textSize="15dp"
-            android:textStyle="bold" />
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,7 +80,7 @@
                 android:layout_weight="0.4"
                 android:fontFamily="@font/israrsyria"
                 android:text="1000 ج.م/ ساعة "
-                android:textColor="#fff"
+                android:textColor="@color/colorAccent"
                 android:textSize="15dp"/>
 
         </LinearLayout>
@@ -102,9 +104,9 @@
                 app:nb_textStyle="bold"
                 app:nb_borderWidth="2dp"
                 app:nb_borderColor="#fff"
-                app:nb_backgroundColor="#fff"
+                app:nb_backgroundColor="@color/colorAccent"
                 app:nb_focusColor="#2A5F81"
-                app:nb_textColor="#2481B4"
+                app:nb_textColor="#fff"
                 app:nb_radius="12dp"
                 />
 
@@ -122,9 +124,9 @@
                     app:nb_textStyle="bold"
                     app:nb_borderWidth="2dp"
                     app:nb_borderColor="#fff"
-                    app:nb_backgroundColor="#fff"
+                    app:nb_backgroundColor="@color/colorAccent"
                     app:nb_focusColor="#2A5F81"
-                    app:nb_textColor="#2481B4"
+                    app:nb_textColor="#fff"
                     app:nb_radius="17dp" />
 
 

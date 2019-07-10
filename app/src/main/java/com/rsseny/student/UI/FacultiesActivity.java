@@ -1,7 +1,6 @@
 package com.rsseny.student.UI;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,9 +26,9 @@ import com.squareup.picasso.Picasso;
 
 
 /*
-* This Activity for showing the list of faculties that user can choose.
-*
-* */
+ * This Activity for showing the list of faculties that user can choose.
+ *
+ * */
 public class FacultiesActivity extends AppCompatActivity {
 
     private static final String TAG = "FacultiesActivity";
@@ -42,8 +41,6 @@ public class FacultiesActivity extends AppCompatActivity {
     FrameLayout progressOverLay;
 
     RecyclerView recycler_menu;
-
-    //Todo make a loading dialog to show the application fetching data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +61,7 @@ public class FacultiesActivity extends AppCompatActivity {
     }
 
     //This called when Activity started to fetch data from Firebase database
-    public void loadChoosingMenu(){
+    public void loadChoosingMenu() {
         FirebaseRecyclerOptions<ChoosingItem> options = new FirebaseRecyclerOptions.Builder<ChoosingItem>()
                 .setQuery(choosingRef, ChoosingItem.class)
                 .build();
@@ -73,13 +70,13 @@ public class FacultiesActivity extends AppCompatActivity {
         progressOverLay.setVisibility(View.VISIBLE);
 
 
-        Log.d(TAG, "Tell me if the progress bar visible or not" );
+        Log.d(TAG, "Tell me if the progress bar visible or not");
         adapter = new FirebaseRecyclerAdapter<ChoosingItem, ChoosingViewHolder>(options) {
 
 
             @Override
             protected void onBindViewHolder(@NonNull ChoosingViewHolder viewHolder, int position, @NonNull ChoosingItem model) {
-                viewHolder.choosingFacultyButton.setText( model.getNameOfFaculty());
+                viewHolder.choosingFacultyButton.setText(model.getNameOfFaculty());
                 Picasso.with(getBaseContext()).load(model.getImage())
                         .into(viewHolder.choosingImage);
 

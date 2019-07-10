@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.rsseny.student.Model.ChoosingItem;
 import com.rsseny.student.Model.Common;
 import com.rsseny.student.Model.User;
 import com.rsseny.student.Model.Videos;
@@ -59,20 +60,18 @@ public class MainActivity extends YouTubeBaseActivity
 
     RecyclerView recyclerView;
     Toolbar toolbar;
-
+    String videosId = "";
+    String userID = "";
+    String idUser = "";
+    String userFBID = "";
+    TextView nameOfUser;
+    ImageView imageViewOfNav;
+    ChoosingItem faculty;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private FloatingActionButton askBtn;
     private FloatingActionButton knowMoreBtn;
-
-    String videosId = "";
-    String userID = "";
-    String idUser = "";
-    String userFBID = "";
-
-    TextView nameOfUser;
-    ImageView imageViewOfNav;
 
     @SuppressLint("ResourceType")
     @Override
@@ -102,8 +101,6 @@ public class MainActivity extends YouTubeBaseActivity
         facultyRef = database.getReference("Faculties");
         userRef = database.getReference("Users");
         mAuth = FirebaseAuth.getInstance();
-
-
 
         //Recycler Init
         recyclerView = findViewById(R.id.recycler_menu);
@@ -206,11 +203,12 @@ public class MainActivity extends YouTubeBaseActivity
 
 
             }
-            @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
         // Get data from firebase according to choosing of item..
@@ -219,6 +217,7 @@ public class MainActivity extends YouTubeBaseActivity
             if (!videosId.isEmpty() && videosId != null) {
                 if (Common.isConnectionToInternet(this)) {
                     loadVideosData(videosId);
+
                 } else {
                     Toasty.error(this,
                             "اعمل باقة الاول عشان تعرف تتفرج بطلوا بخل بقى  \uD83D\uDE21 \uD83D\uDE12 ",
@@ -228,13 +227,13 @@ public class MainActivity extends YouTubeBaseActivity
                 }
             }
         }
-
     }
 
     private void loadVideosData(String videosId) {
 
         // Load List of videos based on video category id
         Query loadData = vidRef.orderByChild("menuId").equalTo(videosId);
+
 
         FirebaseRecyclerOptions<Videos> options = new FirebaseRecyclerOptions.Builder<Videos>()
                 .setQuery(loadData, Videos.class)
@@ -298,9 +297,8 @@ public class MainActivity extends YouTubeBaseActivity
         if (drawer.isDrawerOpen(END)) {
             drawer.closeDrawer(END);
         }
-            super.onBackPressed();
+        super.onBackPressed();
     }
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")

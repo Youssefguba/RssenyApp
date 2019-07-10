@@ -16,6 +16,10 @@ public class ChoosingItem {
         return NameOfFaculty;
     }
 
+    public String getNameOfFaculty(String id){
+        return NameOfFaculty;
+    }
+
     public void setNameOfFaculty(String nameOfFaculty) {
         NameOfFaculty = nameOfFaculty;
     }

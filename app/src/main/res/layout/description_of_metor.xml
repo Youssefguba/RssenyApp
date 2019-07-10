@@ -10,8 +10,6 @@
     android:background="@drawable/background_of_mentor_description"
     android:orientation="vertical">
 
-
-
     <TextView
         android:id="@+id/title_of_mentor"
         android:layout_width="wrap_content"
@@ -20,6 +18,7 @@
         android:layout_gravity="end"
         android:fontFamily="@font/israrsyria"
         android:padding="10dp"
+        android:layoutDirection="rtl"
         android:textSize="15dp"
         android:text="استاذ دكتور في كلية الدراسات الاسلامية "
         android:textColor="#fff"
@@ -31,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:fontFamily="@font/stcregular"
+        android:layoutDirection="rtl"
         android:padding="10dp"
         android:text="استاذ دكتور في كلية الدراسات الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميليةالاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية"
         android:textColor="#fff"
@@ -44,6 +44,7 @@
         android:fontFamily="@font/israrsyria"
         android:padding="10dp"
         android:text="200 ج.م/ساعة "
+        android:layoutDirection="rtl"
         android:textColor="#fff"
         android:textStyle="bold" />
 
