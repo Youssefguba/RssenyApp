@@ -7,7 +7,6 @@
     android:layout_marginBottom="7dp"
     android:background="#fff"
     android:layoutDirection="rtl"
-    android:orientation="horizontal"
     android:weightSum="5">
 
     <LinearLayout
@@ -16,13 +15,28 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/mentorPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginStart="20dp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/mentor_background"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:src="@drawable/background_mentor" />
+
+            <ImageView
+                android:id="@+id/mentorPhoto"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignBaseline="@+id/mentor_background"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -36,15 +50,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="7dp"
-            android:layoutDirection="rtl"
             android:fontFamily="@font/hacenvanilla"
             android:gravity="right"
+            android:layoutDirection="rtl"
             android:text="يوسف"
             android:textColor="@color/colorAccent"
-            android:textSize="17dp"
-
-
-            />
+            android:textSize="17dp" />
 
         <TextView
             android:id="@+id/descriptionOfMentor"
@@ -57,84 +68,83 @@
             android:layoutDirection="rtl"
             android:text="Youssef"
             android:textColor="@color/colorAccent"
-            android:textSize="15dp"
-             />
+            android:textSize="15dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:weightSum="4">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="match_parent"
-            android:layoutDirection="rtl"
-            android:layout_gravity="start">
-
-            <TextView
-                android:id="@+id/priceOfMentor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="7dp"
-                android:layout_weight="0.4"
-                android:fontFamily="@font/israrsyria"
-                android:text="1000 ج.م/ ساعة "
-                android:textColor="@color/colorAccent"
-                android:textSize="15dp"/>
-
-        </LinearLayout>
             <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layoutDirection="ltr"
-                android:layout_width="0dp"
-                android:layout_gravity="end"
-                android:layout_weight="2">
+                android:layout_gravity="start"
+                android:layout_weight="2"
+                android:layoutDirection="rtl">
 
-            <com.ornach.nobobutton.NoboButton
-                android:id="@+id/chooseButtonOfMentor"
+                <TextView
+                    android:id="@+id/priceOfMentor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_weight="0.4"
+                    android:fontFamily="@font/israrsyria"
+                    android:text="1000 ج.م/ ساعة "
+                    android:textColor="@color/colorAccent"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="7dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/hacenvanilla"
-                app:nb_text="إختار"
-                app:nb_textSize="10dp"
-                app:nb_textStyle="bold"
-                app:nb_borderWidth="2dp"
-                app:nb_borderColor="#fff"
-                app:nb_backgroundColor="@color/colorAccent"
-                app:nb_focusColor="#2A5F81"
-                app:nb_textColor="#fff"
-                app:nb_radius="12dp"
-                />
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_weight="2"
+                android:layoutDirection="ltr">
+
+                <com.ornach.nobobutton.NoboButton
+                    android:id="@+id/chooseButtonOfMentor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/hacenvanilla"
+                    app:nb_backgroundColor="@color/colorAccent"
+                    app:nb_borderColor="#fff"
+                    app:nb_borderWidth="2dp"
+                    app:nb_focusColor="#2A5F81"
+                    app:nb_radius="12dp"
+                    app:nb_text="إختار"
+                    app:nb_textColor="#fff"
+                    app:nb_textSize="10dp"
+                    app:nb_textStyle="bold" />
 
                 <com.ornach.nobobutton.NoboButton
                     android:id="@+id/detailsButtonOfMentor"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="start"
                     android:layout_marginStart="7dp"
                     android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/hacenvanilla"
-                    app:nb_text="المزيد"
-                    app:nb_textSize="10dp"
-                    app:nb_textStyle="bold"
-                    app:nb_borderWidth="2dp"
-                    app:nb_borderColor="#fff"
                     app:nb_backgroundColor="@color/colorAccent"
+                    app:nb_borderColor="#fff"
+                    app:nb_borderWidth="2dp"
                     app:nb_focusColor="#2A5F81"
+                    app:nb_radius="17dp"
+                    app:nb_text="المزيد"
                     app:nb_textColor="#fff"
-                    app:nb_radius="17dp" />
-
-                </LinearLayout>
+                    app:nb_textSize="10dp"
+                    app:nb_textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+</LinearLayout>
 

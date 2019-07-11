@@ -23,6 +23,7 @@
         <item
             android:id="@+id/askNavigation"
             android:title="اسأل واستشير"
+
             android:icon="@drawable/world"
             app:showAsAction="ifRoom"
 

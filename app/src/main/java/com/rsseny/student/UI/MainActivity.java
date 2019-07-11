@@ -50,6 +50,7 @@ public class MainActivity extends YouTubeBaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
+
     //Firebase Def
     FirebaseDatabase database;
     DatabaseReference vidRef;
@@ -67,6 +68,7 @@ public class MainActivity extends YouTubeBaseActivity
     TextView nameOfUser;
     ImageView imageViewOfNav;
     ChoosingItem faculty;
+
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
@@ -83,7 +85,6 @@ public class MainActivity extends YouTubeBaseActivity
         toolbar = findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-
         toolbar.setTitle("الكليات");
 
         toggle = new ActionBarDrawerToggle(
@@ -91,7 +92,6 @@ public class MainActivity extends YouTubeBaseActivity
         drawer.addDrawerListener(toggle);
         navigationView.setNavigationItemSelectedListener(this);
         toggle.syncState();
-
 
         getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
 
@@ -106,29 +106,10 @@ public class MainActivity extends YouTubeBaseActivity
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 1));
 
-        //Views Init
-//        knowMoreBtn = findViewById(R.id.know_more_button);
-//        askBtn = findViewById(R.id.ask_nav);
 
         View headerView = navigationView.getHeaderView(0);
         nameOfUser = headerView.findViewById(R.id.nameOfUser);
         imageViewOfNav = headerView.findViewById(R.id.imageView_nav);
-
-
-//        //Buttons onClickListener Method
-//        knowMoreBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                recreate();
-//            }
-//        });
-//        askBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(MainActivity.this, askingActivity.class));
-//
-//            }
-//        });
 
         // Get Name of the User..
         userRef.addValueEventListener(new ValueEventListener() {

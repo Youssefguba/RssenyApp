@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:background="@drawable/background_of_mentor_description"
+    android:fadingEdge="none"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_of_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_weight="4.5"
+        android:fontFamily="@font/israrsyria"
+        android:layoutDirection="rtl"
+        android:padding="10dp"
+        android:text="استاذ دكتور في كلية الدراسات الاسلامية "
+        android:textColor="#fff"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/description_of_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:fontFamily="@font/stcregular"
+        android:layoutDirection="rtl"
+        android:padding="10dp"
+        android:text="استاذ دكتور في كلية الدراسات الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميليةالاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية الاسلامية الجهنمية الحلوية المهلبية الجميلية"
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/price_of_mentor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/israrsyria"
+        android:layoutDirection="rtl"
+        android:padding="10dp"
+        android:text="200 ج.م/ساعة "
+        android:textColor="#fff"
+        android:textStyle="bold" />
+
+    <com.ornach.nobobutton.NoboButton
+        android:id="@+id/chooseButtonOfMentor"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/hacenvanilla"
+        app:nb_backgroundColor="#fff"
+        app:nb_borderColor="#fff"
+        app:nb_borderWidth="2dp"
+        app:nb_focusColor="#2A5F81"
+        app:nb_radius="12dp"
+        app:nb_text="إختار"
+        app:nb_textColor="#2481B4"
+        app:nb_textSize="11dp"
+        app:nb_textStyle="bold" />
+
+
+</LinearLayout>
