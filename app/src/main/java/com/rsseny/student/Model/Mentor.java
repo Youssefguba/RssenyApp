@@ -3,9 +3,8 @@ package com.rsseny.student.Model;
 public class Mentor {
     private String Name, PhoneNumber, Cost ,Photo, Description, Details;
 
-    public Mentor(String name, String phoneNumber, String cost, String photo, String description, String details) {
+    public Mentor(String name, String cost, String photo, String description, String details) {
         Name = name;
-        PhoneNumber = phoneNumber;
         Cost = cost;
         Photo = photo;
         Description = description;
