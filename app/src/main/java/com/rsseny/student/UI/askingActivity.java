@@ -1,6 +1,7 @@
 package com.rsseny.student.UI;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,6 +111,16 @@ public class askingActivity extends AppCompatActivity {
                 Picasso.with(getBaseContext())
                         .load(mentor.getPhoto())
                         .into(mentorViewHolder.photoOfMentor);
+
+                mentorViewHolder.chooseButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String url = "https://www.facebook.com/Rsseny/";
+                        Intent websiteIntent = new Intent(Intent.ACTION_VIEW);
+                        websiteIntent.setData(Uri.parse(url));
+                        startActivity(websiteIntent);
+                    }
+                });
             }
 
             @NonNull

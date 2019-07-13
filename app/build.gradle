@@ -10,7 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        "AIzaSyAnBBtXNbqQ9TCK3rPQd69-S7eXvpR333M"
     }
     buildTypes {
         release {
