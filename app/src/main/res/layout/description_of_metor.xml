@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/description_of_metor_ui"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_weight="4.5"
-            android:fontFamily="@font/israrsyria"
+            android:fontFamily="@font/stcregular"
             android:layoutDirection="rtl"
             android:padding="10dp"
             android:text="استاذ دكتور في كلية الدراسات الاسلامية "
@@ -66,7 +67,7 @@
             app:nb_borderWidth="2dp"
             app:nb_focusColor="#2A5F81"
             app:nb_radius="12dp"
-            app:nb_text="إختار"
+            app:nb_text="احجز"
             app:nb_textColor="#2481B4"
             app:nb_textSize="11dp"
             app:nb_textStyle="bold" />

@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="7dp"
-            android:fontFamily="@font/israrsyria"
+            android:fontFamily="@font/stcregular"
             android:gravity="right"
             android:layoutDirection="rtl"
             android:text="Youssef"
@@ -89,10 +89,10 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="7dp"
                     android:layout_weight="0.4"
-                    android:fontFamily="@font/israrsyria"
+                    android:fontFamily="@font/stcregular"
                     android:text="1000 ج.م/ ساعة "
                     android:textColor="@color/colorAccent"
-                    android:textSize="15dp" />
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -116,7 +116,7 @@
                     app:nb_borderWidth="2dp"
                     app:nb_focusColor="#2A5F81"
                     app:nb_radius="12dp"
-                    app:nb_text="إختار"
+                    app:nb_text="إحجز"
                     app:nb_textColor="#fff"
                     app:nb_textSize="10dp"
                     app:nb_textStyle="bold" />

@@ -34,14 +34,13 @@ public class askingActivity extends AppCompatActivity {
     public View show_details_of_mentor;
     public AlertDialog.Builder builder;
     public LayoutInflater inflater;
+    public String url = "";
 
     FirebaseDatabase database;
     DatabaseReference mentorsRef;
     FirebaseRecyclerAdapter<Mentor, MentorViewHolder> adapter;
-
     FloatingActionButton askBtn;
     FloatingActionButton knowMoreBtn;
-
     RecyclerView recyclerView;
     ActionBar actionBar;
 
@@ -115,12 +114,13 @@ public class askingActivity extends AppCompatActivity {
                 mentorViewHolder.chooseButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String url = "https://www.facebook.com/Rsseny/";
+                        url = mentor.getBook();
                         Intent websiteIntent = new Intent(Intent.ACTION_VIEW);
                         websiteIntent.setData(Uri.parse(url));
                         startActivity(websiteIntent);
                     }
                 });
+
             }
 
             @NonNull
@@ -147,6 +147,15 @@ public class askingActivity extends AppCompatActivity {
         descriptionOfMentor = show_details_of_mentor.findViewById(R.id.description_of_mentor);
         priceOfMentor = show_details_of_mentor.findViewById(R.id.price_of_mentor);
         chooseButtonOfDescription = show_details_of_mentor.findViewById(R.id.chooseButtonOfMentor);
+
+        chooseButtonOfDescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW);
+                websiteIntent.setData(Uri.parse(url));
+                startActivity(websiteIntent);
+            }
+        });
 
         builder.setView(show_details_of_mentor);
         builder.show();

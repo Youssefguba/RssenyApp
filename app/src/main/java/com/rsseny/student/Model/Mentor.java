@@ -1,17 +1,26 @@
 package com.rsseny.student.Model;
 
 public class Mentor {
-    private String Name, PhoneNumber, Cost ,Photo, Description, Details;
+    private String Name, PhoneNumber, Cost, Photo, Description, Details, Book;
 
-    public Mentor(String name, String cost, String photo, String description, String details) {
+    public Mentor(String name, String cost, String photo, String description, String details, String book) {
         Name = name;
         Cost = cost;
         Photo = photo;
         Description = description;
         Details = details;
+        Book = book;
     }
 
     public Mentor() {}
+
+    public String getBook() {
+        return Book;
+    }
+
+    public void setBook(String book) {
+        Book = book;
+    }
 
     public String getName() {
         return Name;
