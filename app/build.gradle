@@ -69,7 +69,9 @@ dependencies {
     //noinspection GradlePath
     implementation files('E:/Big-Real Projects/RssenyApp/App/libs/YouTubeAndroidPlayerApi.jar')
 
-    // Google Libaries
+    // Java
+    implementation "androidx.navigation:navigation-fragment:2.1.0-alpha06"
+    implementation "androidx.navigation:navigation-ui:2.1.0-alpha06"
 
 }
 apply plugin: 'com.google.gms.google-services'

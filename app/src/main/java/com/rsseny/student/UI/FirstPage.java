@@ -2,7 +2,6 @@ package com.rsseny.student.UI;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -29,7 +28,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -221,7 +219,7 @@ public class FirstPage extends AppCompatActivity {
                             startActivity(intent);
 
                         } else {
-                            Toast.makeText(FirstPage.this, " ياعم ما تتأكد من الايميل والباسوورد بقا ومتقرفناش \uD83D\uDE01", Toast.LENGTH_SHORT).show();
+                            Toasty.error(FirstPage.this, " ياعم ما تتأكد من الايميل والباسوورد بقا ومتقرفناش \uD83D\uDE01", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
